@@ -34,7 +34,7 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.0.59</h1>
+						<h1>BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.1.63</h1>
 
 <h1>Installation</h1>
 
@@ -62,24 +62,24 @@
 <li>Ensure that <code>-ObjC</code> has been added to the &ldquo;Other Linker Flags&rdquo; build setting.</li>
 </ul>
 </li>
-<li>Install Adobe Video Heartbeat library v1.4.0, following their <a href="https://github.com/Adobe-Marketing-Cloud/video-heartbeat/">directions</a>.</li>
-<li>Install Adobe Mobile Service library v4.2.0, following their <a href="https://github.com/Adobe-Marketing-Cloud/mobile-services">directions</a></li>
+<li>Install Adobe Video Heartbeat library v1.4.0, following their <a href="[https://github.com/Adobe-Marketing-Cloud/video-heartbeat/](https://github.com/Adobe-Marketing-Cloud/video-heartbeat/)">directions</a>.</li>
+<li>Install Adobe Mobile Service library v4.3.0, following their <a href="[https://github.com/Adobe-Marketing-Cloud/mobile-services](https://github.com/Adobe-Marketing-Cloud/mobile-services)">directions</a></li>
 </ol>
 
 
 <h1>Quick Start</h1>
 
-<p>BCOVAMC is a bridge between the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK for iOS</a> and Adobe video tracking, including <a href="https://github.com/Adobe-Marketing-Cloud/video-heartbeat/">Adobe Video Heartbeat v3</a> and <a href="https://github.com/Adobe-Marketing-Cloud/mobile-services">Adobe Media Tracking v4</a>. BCOVAMC will track basic video behaviors as default: video ready, video completed, video play, and video pause. Its use is relatively straightforward.</p>
+<p>BCOVAMC is a bridge between the <a href="[https://github.com/brightcove/brightcove-player-sdk-ios](https://github.com/brightcove/brightcove-player-sdk-ios)">Brightcove Player SDK for iOS</a> and Adobe video tracking, including <a href="[https://github.com/Adobe-Marketing-Cloud/video-heartbeat/](https://github.com/Adobe-Marketing-Cloud/video-heartbeat/)">Adobe Video Heartbeat v3</a> and <a href="[https://github.com/Adobe-Marketing-Cloud/mobile-services](https://github.com/Adobe-Marketing-Cloud/mobile-services)">Adobe Media Tracking v4</a>. BCOVAMC will track basic video behaviors as default: video ready, video completed, video play, and video pause. Its use is relatively straightforward.</p>
 
 <h2>Client Implementation</h2>
 
-
+<hr />
 
 <p>To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instances of BCOVAMCVideoHeartbeatConfigurationPolicy and BCOVAMCVideoHeartbeatVideoInfoPolicy or to setup Adobe Media Tracking an instance of BCOVAMCMediaSettingPolicy is required. These policies allow for customization of ADB_VHB_ConfigData, ADB_VHB_VideoInfo, and ADBMediaSettings objects for each session. If you want to add specific video info such as video ID into ADB_VHB_ConfigData, ADB_VHB_VideoInfo, or ADBMediaSettings you can use the video&rsquo;s properties dictionary, <code>session.video.properties[&lt;key&gt;]</code>.</p>
 
 <h2>Video Heartbeat</h2>
 
-
+<hr />
 
 <p>This example uses video heartbeat tracking.</p>
 
@@ -92,12 +92,12 @@
         // NOTE: remove this in production code.
         configData.debugLogging = YES;
         return configData;
-    };
+
+        };
 
     BCOVAMCVideoHeartbeatVideoInfoPolicy videoInfoPolicy = ^ADB_VHB_VideoInfo *(id&lt;BCOVPlaybackSession&gt; session) {
 
-
-   [2]      NSString *videoID = session.video.properties[kBCOVCatalogJSONKeyId]; // Retrieve or create a video ID for each session.
+    [2] NSString *videoID = session.video.properties[kBCOVCatalogJSONKeyId]; // Retrieve or create a video ID for each session.
 
         ADB_VHB_VideoInfo *videoInfo = [[ADB_VHB_VideoInfo alloc] init];
         videoInfo.id = videoID;
@@ -105,18 +105,17 @@
         videoInfo.playerName = &lt;cutomize_player_name&gt;;
         return videoInfo;
 
-    };
+        };
 
-   [3] BCOVAMCAnalyticsPolicyheartbeatPolicy heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy: heartbeatConfigPolicy videoInfoPolicy: videoInfoPolicy];
-       BCOVAMCSessionConsumer sessionConsumer = [heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
+[3] BCOVAMCAnalyticsPolicy *heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy: heartbeatConfigPolicy videoInfoPolicy: videoInfoPolicy];
+    BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
 
-   BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-   id&lt;BCOVPlaybackController&gt; controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
-   controller.delegate = self;
-   [self.view addSubview:controller.view];
+    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+    id&lt;BCOVPlaybackController&gt; controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
+    controller.delegate = self;
+    [self.view addSubview:controller.view];
 
-
-   [4] [controller addSessionConsumer: sessionConsumer];
+[4] [controller addSessionConsumer: sessionConsumer];       
 
     NSString *token;      // (Brightcove Media API token with URL access)
     NSString *playlistID; // (ID of the playlist you wish to use)
@@ -132,55 +131,55 @@
     }];
 </code></pre>
 
-<p>Let's break this code down into steps, to make it a bit simpler to digest:</p>
+<p>Let&rsquo;s break this code down into steps, to make it a bit simpler to digest:</p>
 
 <ol>
 <li>You create the video heartbeat configuration policy and video info policy block for each session. These policies allow for customization of configuration and video info. They are executed once per session.</li>
-<li>videoID can be customized for each session, but the simplest way is using video's properties dictionary with either <code>kBCOVCatalogJSONKeyId</code> or <code>kBCOVCatalogJSONKeyReferenceId</code>.</li>
-<li>Use the configuration policy and video info policy blocks to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <code>-[initWithHeartbeatConfigurationPolicy:videoInfoPolicy:]</code>. The BCOVAMCAnalyticsPolicy policy is used to create the BCOVAMCSessionConsumer.</li>
+<li>videoID can be customized for each session, but the simplest way is using video&rsquo;s properties dictionary with either <code>kBCOVCatalogJSONKeyId</code> or <code>kBCOVCatalogJSONKeyReferenceId</code>.</li>
+<li>Use the configuration policy and video info policy blocks to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <code>-[initWithHeartbeatConfigurationPolicy:videoInfoPolicy:]</code>. The <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> policy is used to create the <a href="Classes/BCOVAMCSessionConsumer.html">BCOVAMCSessionConsumer</a>.</li>
 <li>After controller is created, you can use add session consumer method, <code>-[addSessionConsumer:]</code>, to add an AMC session consumer.</li>
 </ol>
 
+
 <h2>Media tracking</h2>
 
+<hr />
 
-This example uses media tracking.
+<p>This example uses media tracking.</p>
 
+<pre><code>[1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id&lt;BCOVPlaybackSession&gt; session) {
 
-<pre><code>
-    [1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id&lt;BCOVPlaybackSession&gt; session) {
+        ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:&lt;cutomize_setting_name&gt;
+[2]                                                                  length:0
+                                                                 playerName:&lt;cutomize_player_name&gt;
+                                                                   playerID:&lt;cutomize_player_ID&gt;];
+[3]     settings.milestones = @"25,50,75";
+        return settings;
 
-            ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:&lt;cutomize_setting_name&gt;
-    [2]                                                                  length:0
-                                                                     playerName:&lt;cutomize_player_name&gt;
-                                                                       playerID:&lt;cutomize_player_ID&gt;];
-    [3]     settings.milestones = @"25,50,75";
-            return settings;
+    };
 
-        };
+[4] BBCOVAMCAnalyticsPolicy *mediaPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithMediaSettingsPolicy:mediaSettingPolicy];
+    BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy delegate:self];
 
-    [4] BBCOVAMCAnalyticsPolicy *mediaPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithMediaSettingsPolicy:mediaSettingPolicy];
-       BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy delegate:self];
+    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+    id&lt;BCOVPlaybackController&gt; controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
+    controller.delegate = self;
+    [self.view addSubview:controller.view];
 
-       BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-       id&lt;BCOVPlaybackController&gt; controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
-       controller.delegate = self;
-       [self.view addSubview:controller.view];
+[5] [controller addSessionConsumer: sessionConsumer];       
 
-    [5] [controller addSessionConsumer: sessionConsumer];       
+    NSString *token;      // (Brightcove Media API token with URL access)
+    NSString *playlistID; // (ID of the playlist you wish to use)
+    BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
+    [catalog findPlaylistWithPlaylistID:playlistID
+                             parameters:nil
+                             completion:^(BCOVPlaylist *playlist,
+                                          NSDictionary *jsonResponse,
+                                          NSError      *error) {
+        [controller setVideos:playlist];
+        [controller play];
 
-        NSString *token;      // (Brightcove Media API token with URL access)
-        NSString *playlistID; // (ID of the playlist you wish to use)
-        BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
-        [catalog findPlaylistWithPlaylistID:playlistID
-                                 parameters:nil
-                                 completion:^(BCOVPlaylist *playlist,
-                                              NSDictionary *jsonResponse,
-                                              NSError      *error) {
-            [controller setVideos:playlist];
-            [controller play];
-
-        }];
+    }];
 </code></pre>
 
 <p>Although the process of media tracking is very similar to video heartbeat, let&rsquo;s break this code down into steps, to make it a bit simpler to digest:</p>
@@ -238,7 +237,7 @@ This example uses media tracking.
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Brightcove. All rights reserved. (Last updated: 2014-12-12)</span><br />
+						<p><span class="copyright">&copy; 2014 Brightcove. All rights reserved. (Last updated: 2014-12-15)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
