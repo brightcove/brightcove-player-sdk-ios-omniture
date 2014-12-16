@@ -1,4 +1,4 @@
-# BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.0.59
+# BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.1.63
 
 Installation
 ============
@@ -38,40 +38,41 @@ To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instan
 
 This example uses video heartbeat tracking.
 
-```objc
 
-	[1] BCOVAMCVideoHeartbeatConfigurationPolicy heartbeatConfigPolicy = ^ADB_VHB_ConfigData *(id<BCOVPlaybackSession> session) {
-        
-        	ADB_VHB_ConfigData *configData = [[ADB_VHB_ConfigData alloc] initWithTrackingServer:<cutomize_sample_server> jobId:<cutomize_sample_job> publisher:<cutomize_sample_publisher>];
-        	configData.channel = <cutomize_sample_channel>;
-        
-        	// Set this to true to activate the debug tracing.
-        	// NOTE: remove this in production code.
-        	configData.debugLogging = YES;
-        	return configData;
-    	};
-    	
-    	BCOVAMCVideoHeartbeatVideoInfoPolicy videoInfoPolicy = ^ADB_VHB_VideoInfo *(id<BCOVPlaybackSession> session) {
-        
-   [2]    	NSString *videoID = session.video.properties[kBCOVCatalogJSONKeyId]; // Retrieve or create a video ID for each session.
-        	
-        	ADB_VHB_VideoInfo *videoInfo = [[ADB_VHB_VideoInfo alloc] init];
-        	videoInfo.id = videoID;
-        	videoInfo.name = videoID;
-        	videoInfo.playerName = <cutomize_player_name>;
-        	return videoInfo;
-        
-    	};
 
-   [3] BCOVAMCAnalyticsPolicy *heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy: heartbeatConfigPolicy videoInfoPolicy: videoInfoPolicy];
-   	   BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
+    [1] BCOVAMCVideoHeartbeatConfigurationPolicy heartbeatConfigPolicy = ^ADB_VHB_ConfigData *(id<BCOVPlaybackSession> session) {
+
+            ADB_VHB_ConfigData *configData = [[ADB_VHB_ConfigData alloc] initWithTrackingServer:<cutomize_sample_server> jobId:<cutomize_sample_job> publisher:<cutomize_sample_publisher>];
+            configData.channel = <cutomize_sample_channel>;
+
+            // Set this to true to activate the debug tracing.
+            // NOTE: remove this in production code.
+            configData.debugLogging = YES;
+            return configData;
+
+            };
+
+        BCOVAMCVideoHeartbeatVideoInfoPolicy videoInfoPolicy = ^ADB_VHB_VideoInfo *(id<BCOVPlaybackSession> session) {
+
+        [2] NSString *videoID = session.video.properties[kBCOVCatalogJSONKeyId]; // Retrieve or create a video ID for each session.
+
+            ADB_VHB_VideoInfo *videoInfo = [[ADB_VHB_VideoInfo alloc] init];
+            videoInfo.id = videoID;
+            videoInfo.name = videoID;
+            videoInfo.playerName = <cutomize_player_name>;
+            return videoInfo;
+    
+            };
+
+    [3] BCOVAMCAnalyticsPolicy *heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy: heartbeatConfigPolicy videoInfoPolicy: videoInfoPolicy];
+        BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
    	   
-       BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-       id<BCOVPlaybackController> controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
-       controller.delegate = self;
-       [self.view addSubview:controller.view];
+        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+        id<BCOVPlaybackController> controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
+        controller.delegate = self;
+        [self.view addSubview:controller.view];
        
-   [4] [controller addSessionConsumer: sessionConsumer];       
+    [4] [controller addSessionConsumer: sessionConsumer];       
 
         NSString *token;      // (Brightcove Media API token with URL access)
         NSString *playlistID; // (ID of the playlist you wish to use)
@@ -81,12 +82,12 @@ This example uses video heartbeat tracking.
                                  completion:^(BCOVPlaylist *playlist,
                                               NSDictionary *jsonResponse,
                                               NSError      *error) {
-			[controller setVideos:playlist];
-			[controller play];
+            [controller setVideos:playlist];
+            [controller play];
 
         }];
        
-```
+
 
 Let's break this code down into steps, to make it a bit simpler to digest:
 
@@ -100,26 +101,26 @@ Let's break this code down into steps, to make it a bit simpler to digest:
 
 This example uses media tracking.
 
-```objc
 
-	[1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id<BCOVPlaybackSession> session) {
+
+    [1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id<BCOVPlaybackSession> session) {
 	
-        	ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:<cutomize_setting_name>
-    [2]   	                                                             length:0
-             	                                                     playerName:<cutomize_player_name>
+            ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:<cutomize_setting_name>
+    [2]                                                                  length:0
+                                                                     playerName:<cutomize_player_name>
                                                                        playerID:<cutomize_player_ID>];
-    [3]  	settings.milestones = @"25,50,75";
-         	return settings;
-         	
-    	};
+    [3]     settings.milestones = @"25,50,75";
+            return settings;
+
+        };
 
     [4] BBCOVAMCAnalyticsPolicy *mediaPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithMediaSettingsPolicy:mediaSettingPolicy];
-   	   BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy delegate:self];
-   	   
-       BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-       id<BCOVPlaybackController> controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
-       controller.delegate = self;
-       [self.view addSubview:controller.view];
+        BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy delegate:self];
+
+        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+        id<BCOVPlaybackController> controller = [manager createPlaybackControllerWithViewStrategy:[manager defaultControlsViewStrategy]];
+        controller.delegate = self;
+        [self.view addSubview:controller.view];
        
     [5] [controller addSessionConsumer: sessionConsumer];       
 
@@ -131,12 +132,12 @@ This example uses media tracking.
                                  completion:^(BCOVPlaylist *playlist,
                                               NSDictionary *jsonResponse,
                                               NSError      *error) {
-			[controller setVideos:playlist];
-			[controller play];
+            [controller setVideos:playlist];
+            [controller play];
 
         }];
        
-```
+
 
 Although the process of media tracking is very similar to video heartbeat, let's break this code down into steps, to make it a bit simpler to digest:
 
