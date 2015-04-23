@@ -1,4 +1,4 @@
-# BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.1.63
+# BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.2.74
 
 Installation
 ============
@@ -18,7 +18,7 @@ To add the Omniture Plugin for Brightcove Player SDK to your project manually:
 1. On the "Build Settings" tab of your application target:
     * Ensure that BCOVAMC headers are in your application's "Header Search Path".
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
-1. Install Adobe Video Heartbeat library v1.4.0, following their [directions][adobeheartbeat].
+1. Install Adobe Video Heartbeat library v1.4.1.2, including VideoHeartbeat and AdobeAnalyticsPlugin, following their [directions][adobeheartbeat].
 1. Install Adobe Mobile Service library v4.3.0, following their [directions][adobemobileservice]
 
 [cocoapods]: http://cocoapods.org
