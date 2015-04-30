@@ -1,4 +1,4 @@
-# BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.2.74
+# BCOVAMC Plugin for Brightcove Player SDK for iOS, version 1.0.3.82
 
 Installation
 ============
