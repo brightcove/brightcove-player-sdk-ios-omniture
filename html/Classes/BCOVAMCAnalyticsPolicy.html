@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVAMCSessionConsumer Class Reference</title>
+	<title>BCOVAMCAnalyticsPolicy Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -54,21 +54,25 @@
 
 	
 	
-
-	
-	<optgroup label="Class Methods">
+	<optgroup label="Properties">
 		
-		<option value="//api/name/heartbeatAnalyticsConsumerWithPolicy:delegate:">+ heartbeatAnalyticsConsumerWithPolicy:delegate:</option>
+		<option value="//api/name/configurationPolicy">configurationPolicy</option>
 		
-		<option value="//api/name/mediaAnalyticsConsumerWithPolicy:delegate:">+ mediaAnalyticsConsumerWithPolicy:delegate:</option>
+		<option value="//api/name/mediaSettingPolicy">mediaSettingPolicy</option>
 		
 	</optgroup>
+	
+
 	
 
 	
 	<optgroup label="Instance Methods">
 		
 		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/initWithHeartbeatConfigurationPolicy:">- initWithHeartbeatConfigurationPolicy:</option>
+		
+		<option value="//api/name/initWithMediaSettingsPolicy:">- initWithMediaSettingsPolicy:</option>
 		
 	</optgroup>
 	
@@ -85,7 +89,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVAMCSessionConsumer Class Reference</h1>
+					<h1 class="title">BCOVAMCAnalyticsPolicy Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -93,11 +97,8 @@
 	<th>Inherits from</th>
 	<td>NSObject</td>
 </tr><tr>
-	<th>Conforms to</th>
-	<td>BCOVPlaybackSessionConsumer</td>
-</tr><tr>
 	<th>Declared in</th>
-	<td>BCOVAMCSessionConsumer.h</td>
+	<td>BCOVAMCAnalyticsPolicy.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -107,8 +108,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The BCOVAMCSessionConsumer instance takes care of everything related to
-reporting Adobe marketing cloud video ananlytics.</p>
+						<p>This policy allows clients to specify the configuration data required by
+Adobe video Heartbeat tracking, media tracking and video info.</p>
 					</div>
 					
 					
@@ -124,8 +125,40 @@ reporting Adobe marketing cloud video ananlytics.</p>
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/heartbeatAnalyticsConsumerWithPolicy:delegate:" title="heartbeatAnalyticsConsumerWithPolicy:delegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/heartbeatAnalyticsConsumerWithPolicy:delegate:">+&nbsp;heartbeatAnalyticsConsumerWithPolicy:delegate:</a></code>
+	<a name="//api/name/configurationPolicy" title="configurationPolicy"></a>
+	<h3 class="method-title"><code><a href="#//api/name/configurationPolicy">&nbsp;&nbsp;configurationPolicy</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) BCOVAMCVideoHeartbeatConfigurationPolicy configurationPolicy</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/mediaSettingPolicy" title="mediaSettingPolicy"></a>
+	<h3 class="method-title"><code><a href="#//api/name/mediaSettingPolicy">&nbsp;&nbsp;mediaSettingPolicy</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) BCOVAMCMediaSettingPolicy mediaSettingPolicy</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithHeartbeatConfigurationPolicy:" title="initWithHeartbeatConfigurationPolicy:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithHeartbeatConfigurationPolicy:">&ndash;&nbsp;initWithHeartbeatConfigurationPolicy:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -135,13 +168,13 @@ reporting Adobe marketing cloud video ananlytics.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Returns a session consumer for Adobe video Heartbeat that is
-initialized with a specified heartheat policy and an optional delegate.</p>
+				<p>Returns an initialized instance of BCOVCuePointProgressPolicy for Adobe video
+Heartbeat with the specified <a href="../Blocks/BCOVAMCVideoHeartbeatConfigurationPolicy.html"><code>BCOVAMCVideoHeartbeatConfigurationPolicy</code></a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (instancetype)heartbeatAnalyticsConsumerWithPolicy:(BCOVAMCAnalyticsPolicy *)<em>heartbeatPolicy</em> delegate:(id&lt;BCOVAMCSessionConsumerHeartbeatDelegate&gt;)<em>delegate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithHeartbeatConfigurationPolicy:(BCOVAMCVideoHeartbeatConfigurationPolicy)<em>configurationPolicy</em></code></div>
 
 		    
 			
@@ -150,15 +183,9 @@ initialized with a specified heartheat policy and an optional delegate.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>heartbeatPolicy</code></th>
-						<td><p>A <a href="../Classes/BCOVAMCAnalyticsPolicy.html"><code>BCOVAMCAnalyticsPolicy</code></a> instance specifies Adobe
-Heartbeat analytics.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>delegate</code></th>
-						<td><p>An optional delegate conforming to the
-<a href="../Protocols/BCOVAMCSessionConsumerHeartbeatDelegate.html"><code>BCOVAMCSessionConsumerHeartbeatDelegate</code></a> protocol.</p></td>
+						<th scope="row" class="argument-name"><code>configurationPolicy</code></th>
+						<td><p>a <a href="../Blocks/BCOVAMCVideoHeartbeatConfigurationPolicy.html"><code>BCOVAMCVideoHeartbeatConfigurationPolicy</code></a> that will be used for Adobe
+video Heartbeat configuration.</p></td>
 					</tr>
 				
 				</table>
@@ -166,19 +193,14 @@ Heartbeat analytics.</p></td>
 			
 
 			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>A session consumer specifies Adobe Heartbeat analytics.</p>
-			</div>
-			
 
 			
 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Returns a session consumer for Adobe video Heartbeat that is
-initialized with a specified heartheat policy and an optional delegate.</p>
+				<p>Returns an initialized instance of BCOVCuePointProgressPolicy for Adobe video
+Heartbeat with the specified <a href="../Blocks/BCOVAMCVideoHeartbeatConfigurationPolicy.html"><code>BCOVAMCVideoHeartbeatConfigurationPolicy</code></a>.</p>
 			</div>
 			
 
@@ -189,15 +211,15 @@ initialized with a specified heartheat policy and an optional delegate.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVAMCSessionConsumer.h</code></p>
+				<p><code class="declared-in-ref">BCOVAMCAnalyticsPolicy.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/mediaAnalyticsConsumerWithPolicy:delegate:" title="mediaAnalyticsConsumerWithPolicy:delegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/mediaAnalyticsConsumerWithPolicy:delegate:">+&nbsp;mediaAnalyticsConsumerWithPolicy:delegate:</a></code>
+	<a name="//api/name/initWithMediaSettingsPolicy:" title="initWithMediaSettingsPolicy:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithMediaSettingsPolicy:">&ndash;&nbsp;initWithMediaSettingsPolicy:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -207,13 +229,13 @@ initialized with a specified heartheat policy and an optional delegate.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Returns a session consumer for Adobe video media analytics that is
-initialized with a specified media policy and an optional delegate.</p>
+				<p>Returns an initialized instance of BCOVCuePointProgressPolicy for Adobe media
+tracking with the specified <a href="../Blocks/BCOVAMCMediaSettingPolicy.html"><code>BCOVAMCMediaSettingPolicy</code></a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (instancetype)mediaAnalyticsConsumerWithPolicy:(BCOVAMCAnalyticsPolicy *)<em>mediaPolicy</em> delegate:(id&lt;BCOVAMCSessionConsumerMeidaDelegate&gt;)<em>delegate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithMediaSettingsPolicy:(BCOVAMCMediaSettingPolicy)<em>mediaSettingPolicy</em></code></div>
 
 		    
 			
@@ -222,15 +244,9 @@ initialized with a specified media policy and an optional delegate.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>delegate</code></th>
-						<td><p>An optional delegate conforming to the
-<a href="../Protocols/BCOVAMCSessionConsumerMeidaDelegate.html"><code>BCOVAMCSessionConsumerMeidaDelegate</code></a> protocol.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>heartbeatPolicy</code></th>
-						<td><p>A <a href="../Classes/BCOVAMCAnalyticsPolicy.html"><code>BCOVAMCAnalyticsPolicy</code></a> instance specifies Adobe
-video media analytics.</p></td>
+						<th scope="row" class="argument-name"><code>mediaSettingPolicy</code></th>
+						<td><p>a <a href="#//api/name/mediaSettingPolicy"><code>mediaSettingPolicy</code></a> that will be used for Adobe
+media tracking setting.</p></td>
 					</tr>
 				
 				</table>
@@ -238,19 +254,14 @@ video media analytics.</p></td>
 			
 
 			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>A session consumer specifies Adobe media heartbeat analytics.</p>
-			</div>
-			
 
 			
 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Returns a session consumer for Adobe video media analytics that is
-initialized with a specified media policy and an optional delegate.</p>
+				<p>Returns an initialized instance of BCOVCuePointProgressPolicy for Adobe media
+tracking with the specified <a href="../Blocks/BCOVAMCMediaSettingPolicy.html"><code>BCOVAMCMediaSettingPolicy</code></a>.</p>
 			</div>
 			
 
@@ -261,7 +272,7 @@ initialized with a specified media policy and an optional delegate.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVAMCSessionConsumer.h</code></p>
+				<p><code class="declared-in-ref">BCOVAMCAnalyticsPolicy.h</code></p>
 			</div>
 			
 			

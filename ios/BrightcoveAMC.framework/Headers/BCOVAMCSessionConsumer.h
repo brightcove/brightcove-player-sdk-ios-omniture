@@ -1,22 +1,25 @@
 //
-//  BCOVAMCSessionConsumer.h
-//  BCOVAMC
+// BCOVAMCSessionConsumer.h
+// BrightcoveAMC
 //
-//  Copyright (c) 2014 Brightcove, Inc. All rights reserved.
-//  License: https://accounts.brightcove.com/en/terms-and-conditions
+// Copyright (c) 2016 Brightcove, Inc. All rights reserved.
+// License: https://accounts.brightcove.com/en/terms-and-conditions
 //
 
 #import <Foundation/Foundation.h>
 
+#import <BrightcovePlayerSDK/BCOVPlaybackController.h>
+
 #import "BCOVAMCAnalyticsPolicy.h"
 
-#import "BCOVPlaybackController.h"
 
-#import "ADB_VHB_ErrorInfo.h"
-#import "ADBMobile.h"
+// Adobe Mobile Marketing Cloud
+@class ADBMobile;
+
 
 @protocol BCOVAMCSessionConsumerHeartbeatDelegate;
 @protocol BCOVAMCSessionConsumerMeidaDelegate;
+
 
 /**
  * The BCOVAMCSessionConsumer instance takes care of everything related to 
@@ -31,8 +34,8 @@
  *
  * @param heartbeatPolicy A `BCOVAMCAnalyticsPolicy` instance specifies Adobe
  * Heartbeat analytics.
- * @param delegate An optional delegate confirmed with `BCOVAMCSessionConsumerHeartbeatDelegate`
- * protocol.
+ * @param delegate An optional delegate conforming to the
+ * `BCOVAMCSessionConsumerHeartbeatDelegate` protocol.
  * @return A session consumer specifies Adobe Heartbeat analytics.
  */
 
@@ -44,8 +47,8 @@
  *
  * @param heartbeatPolicy A `BCOVAMCAnalyticsPolicy` instance specifies Adobe
  * video media analytics.
- * @param delegate An optional delegate confirmed with `BCOVAMCSessionConsumerMeidaDelegate`
- * protocol.
+ * @param delegate An optional delegate conforming to the
+ * `BCOVAMCSessionConsumerMeidaDelegate` protocol.
  * @return A session consumer specifies Adobe media heartbeat analytics.
  */
 + (instancetype)mediaAnalyticsConsumerWithPolicy:(BCOVAMCAnalyticsPolicy *)mediaPolicy delegate:(id<BCOVAMCSessionConsumerMeidaDelegate>)delegate;
@@ -59,27 +62,18 @@
 @end
 
 /**
- * Methods which may be implemented by delegates of an AMC session comsumer 
- * specified for Adobe video heartbeat analytics.
+ * Optional methods which may be implemented by delegates of an AMC session
+ * comsumer for Adobe video heartbeat analytics.
  */
 @protocol BCOVAMCSessionConsumerHeartbeatDelegate <NSObject>
 
 @optional
-/**
- * Called when `ADB_VHB_PlayerDelegate` received `onError:` message.
- *
- * @param session The playback session with AMC session comsumer
- * specified for Adobe video Heartbeat analytics who is received `onError:`
- * message.
- * @param errorInfo the `ADB_VHB_ErrorInfo` instance.
- */
-- (void)heartbeatOnSession:(id<BCOVPlaybackSession>)session error:(ADB_VHB_ErrorInfo *)errorInfo;
 
 /**
  * Called when `ADB_VHB_PlayerDelegate` received `onVideoUnloaded` message.
  *
- * @param session The playback session with AMC session comsumer
- * specified for Adobe video Heartbeat analytics who is received `onVideoUnloaded`
+ * @param session The playback session with AMC session comsumer specified for
+ * Adobe video Heartbeat analytics which receives the `onVideoUnloaded`
  * message.
  */
 - (void)heartbeatVideoUnloadedOnSession:(id<BCOVPlaybackSession>)session;
@@ -87,14 +81,15 @@
 @end
 
 /**
- * Methods which may be implemented by delegates of an AMC session comsumer
- * specified for Adobe video Media analytics.
+ * Optional methods which may be implemented by delegates of an AMC session
+ * comsumer for Adobe video Media analytics.
  */
 @protocol BCOVAMCSessionConsumerMeidaDelegate <NSObject>
 
 @optional
+
 /**
- * Called evey second for providing the most recent medita state.
+ * Called every second in order to provide the most recent medita state.
  *
  * @param session The playback session with AMC session comsumer
  * specified for Adobe video Media analytics.
