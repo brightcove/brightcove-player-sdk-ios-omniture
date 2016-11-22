@@ -1,3 +1,7 @@
+# 1.1.1
+### Additions and Improvements
+* The minimum supported deployment target is now iOS 8.0.
+
 # Please Note:
 * As of v1.1.0, the Brightcove Omniture plugin requires version 5.1.0 or higher of the [Brightcove Player SDK for iOS](https://github.com/brightcove/brightcove-player-sdk-ios/releases).
 

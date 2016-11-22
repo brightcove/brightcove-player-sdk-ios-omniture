@@ -1,21 +1,21 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 1.1.0.117
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 1.1.1.121
 
 Supported Platforms
 ===================
 
-iOS 7.0 and above.
+iOS 8.0 and above.
 
 Installation
 ============
 
-The Omniture plugin is a static library framework for iOS 7 and above.
+The Omniture plugin is a static library framework for iOS 8 and above.
 
 The Omniture plugin currently supports Adobe Marketing Cloud v4.11.1 and Adobe Video Heartbeat v2.0.0. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and **must** be added manually to your project. Instructions for downloading the libraries are provided below.
 
 CocoaPods
 ---------
 
-You can use [CocoaPods][cocoapods] version 0.39.0 or higher to add the Omniture plugin to your project.  You can find the latest `Brightcove-Player-SDK-Omniture` podspec [here][podspecs]. To use this spec, add the following to the top of your Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
+You can use [CocoaPods][cocoapods] version 1.0 or higher to add the Omniture plugin to your project.  You can find the latest `Brightcove-Player-SDK-Omniture` podspec [here][podspecs]. To use this spec, add the following to the top of your Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
 
 Static Framework example:
 
