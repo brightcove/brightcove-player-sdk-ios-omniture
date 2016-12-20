@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 1.1.1.121
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 1.1.2.127
 
 Supported Platforms
 ===================
@@ -21,6 +21,11 @@ Static Framework example:
 
     pod 'Brightcove-Player-SDK-Omniture'
     
+Maintaining an up-to-date master podspec repo is necessary to ensure that you are always using the latest versions of Brightcove software. As of CocoaPods 1.0.0, podspec repo updates are no longer an automatic feature, so to update your master repo, run the following on the command line:
+
+```
+pod repo update
+```
 
 Manual
 ------
@@ -95,15 +100,18 @@ This example uses video heartbeat tracking.
         [controller addSessionConsumer:sessionConsumer];       
 
     [4] // Find and play a video.
-        NSString *token;      // (Brightcove Media API token with URL access)
-        NSString *playlistID; // (ID of the playlist you wish to use)
-        BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
-        [catalog findPlaylistWithPlaylistID:playlistID
-                                 parameters:nil
-                                 completion:^(BCOVPlaylist *playlist,
-                                              NSDictionary *jsonResponse,
-                                              NSError      *error) {
-            [controller setVideos:playlist];
+        NSString *policyKey = <your-policy-key>;
+        NSString *accountId = <your-account-id>;
+        NSString *videoID = <your-video-id>;
+        BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
+                                                                            policyKey:policyKey];
+        [service findVideoWithVideoID:videoID
+                           parameters:nil
+                           completion:^(BCOVVideo    *video,
+                                        NSDictionary *jsonResponse,
+                                        NSError      *error) {
+
+            [controller setVideos:@[ video ]];
             [controller play];
 
         }];
@@ -142,15 +150,18 @@ This example uses media tracking.
        
     [5] [controller addSessionConsumer:sessionConsumer];       
 
-        NSString *token;      // (Brightcove Media API token with URL access)
-        NSString *playlistID; // (ID of the playlist you wish to use)
-        BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
-        [catalog findPlaylistWithPlaylistID:playlistID
-                                 parameters:nil
-                                 completion:^(BCOVPlaylist *playlist,
-                                              NSDictionary *jsonResponse,
-                                              NSError      *error) {
-            [controller setVideos:playlist];
+        NSString *policyKey = <your-policy-key>;
+        NSString *accountId = <your-account-id>;
+        NSString *videoID = <your-video-id>;
+        BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
+                                                                            policyKey:policyKey];
+        [service findVideoWithVideoID:videoID
+                           parameters:nil
+                           completion:^(BCOVVideo    *video,
+                                        NSDictionary *jsonResponse,
+                                        NSError      *error) {
+
+            [controller setVideos:@[ video ]];
             [controller play];
 
         }];
@@ -163,7 +174,7 @@ This example uses media tracking.
 1. Use the media settings policy block to create and initialize a BCOVAMCAnalyticsPolicy instance with `-[initWithMediaSettingsPolicy:]`. The policy object is used to create an AMC session consumer for Adobe media tracking as `+[mediaAnalyticsConsumerWithPolicy:delegate:]`.
 1. After the playback controller is created, call the add session consumer method, `-[addSessionConsumer:]`, to add the AMC session consumer.
 
-If you have questions or need help, we have a support forum for Brightcove's Native Player SDKs at [https://groups.google.com/forum/#!forum/brightcove-native-player-sdks][forum].
+If you have questions or need help, visit the support forum for Brightcove's Native Player SDKs at [https://groups.google.com/forum/#!forum/brightcove-native-player-sdks][forum].
 
 [adobeheartbeat]: https://github.com/Adobe-Marketing-Cloud/video-heartbeat/
 [adobemobileservice]: https://github.com/Adobe-Marketing-Cloud/mobile-services
