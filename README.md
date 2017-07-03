@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 1.1.2.127
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.0.1.72
 
 Supported Platforms
 ===================
@@ -15,11 +15,15 @@ The Omniture plugin currently supports Adobe Marketing Cloud v4.11.1 and Adobe V
 CocoaPods
 ---------
 
-You can use [CocoaPods][cocoapods] version 1.0 or higher to add the Omniture plugin to your project.  You can find the latest `Brightcove-Player-SDK-Omniture` podspec [here][podspecs]. To use this spec, add the following to the top of your Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
+You can use [CocoaPods][cocoapods] version 1.0 or higher to add the Omniture plugin to your project.  You can find the latest `Brightcove-Player-Omniture` podspec [here][podspecs]. To use this spec, add the following to the top of your Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
 
 Static Framework example:
 
-    pod 'Brightcove-Player-SDK-Omniture'
+```
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+pod 'Brightcove-Player-Omniture'
+```
     
 Maintaining an up-to-date master podspec repo is necessary to ensure that you are always using the latest versions of Brightcove software. As of CocoaPods 1.0.0, podspec repo updates are no longer an automatic feature, so to update your master repo, run the following on the command line:
 
@@ -46,7 +50,7 @@ To add the Omniture Plugin for Brightcove Player SDK to your project manually:
 9. Add the Marketing Cloud and Video Heartbeat header folders to the Header Search Path settings of your project.
 
 [cocoapods]: http://cocoapods.org
-[podspecs]: https://github.com/brightcove/BCOVSpecs/tree/master/Brightcove-Player-SDK-Omniture
+[podspecs]: https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-Omniture
 [release]: https://github.com/brightcove/brightcove-player-sdk-ios-omniture/releases
 
 [adobemarketingcloud]: https://marketing.adobe.com/developer/gallery/app-measurement-for-ios
@@ -58,9 +62,9 @@ BrightcoveAMC is a bridge between the [Brightcove Player SDK for iOS][bcovsdk] a
 
 Client Implementation
 =====================
-To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instances of BCOVAMCVideoHeartbeatConfigurationPolicy. To setup Adobe Media Tracking, an instance of BCOVAMCMediaSettingPolicy is required. These [policies][strategy_pattern] allow for customization of ADBMediaHeartbeatConfig or ADBMediaSettings objects for each playback session.
+To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instances of BCOVAMCVideoHeartbeatConfigurationPolicy. To setup Adobe Media Tracking, an instance of BCOVAMCMediaSettingPolicy is required. These [policies][strategypattern] allow for customization of ADBMediaHeartbeatConfig or ADBMediaSettings objects for each playback session.
 
-[strategy_pattern]: https://en.wikipedia.org/wiki/Strategy_pattern
+[strategypattern]: https://en.wikipedia.org/wiki/Strategy_pattern
 
 Video Heartbeat v2
 ------------------
@@ -174,7 +178,7 @@ This example uses media tracking.
 1. Use the media settings policy block to create and initialize a BCOVAMCAnalyticsPolicy instance with `-[initWithMediaSettingsPolicy:]`. The policy object is used to create an AMC session consumer for Adobe media tracking as `+[mediaAnalyticsConsumerWithPolicy:delegate:]`.
 1. After the playback controller is created, call the add session consumer method, `-[addSessionConsumer:]`, to add the AMC session consumer.
 
-If you have questions or need help, visit the support forum for Brightcove's Native Player SDKs at [https://groups.google.com/forum/#!forum/brightcove-native-player-sdks][forum].
+If you have questions or need help, visit the [support forum for Brightcove's Native Player SDKs][forum].
 
 [adobeheartbeat]: https://github.com/Adobe-Marketing-Cloud/video-heartbeat/
 [adobemobileservice]: https://github.com/Adobe-Marketing-Cloud/mobile-services
