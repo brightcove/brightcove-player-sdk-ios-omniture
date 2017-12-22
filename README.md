@@ -1,16 +1,16 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.1.5.228
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.2.1.249
 
 Supported Platforms
 ===================
 
-iOS 8.0 and above.
+iOS 9.0 and above.
 
 Installation
 ============
 
 The Omniture plugin is a static library framework for iOS 8 and above.
 
-The Omniture plugin currently supports Adobe Marketing Cloud v4.11.1 and Adobe Video Heartbeat v2.0.0. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and **must** be added manually to your project. Instructions for downloading the libraries are provided below.
+The Omniture plugin currently supports Adobe Marketing Cloud v4.14.1 and Adobe Video Heartbeat v2.0.1. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and **must** be added manually to your project. Instructions for downloading the libraries are provided below.
 
 CocoaPods
 ---------
@@ -176,6 +176,18 @@ This example uses media tracking.
 1. Use the media settings policy block to create and initialize a BCOVAMCAnalyticsPolicy instance with `-[initWithMediaSettingsPolicy:]`. The policy object is used to create an AMC session consumer for Adobe media tracking as `+[mediaAnalyticsConsumerWithPolicy:delegate:]`.
 1. After the playback controller is created, call the add session consumer method, `-[addSessionConsumer:]`, to add the AMC session consumer.
 
+Adobe-Marketing-Cloud.git
+=========================
+
+To fetch the Adobe Marketing Cloud libraries, run the following:
+
+```
+git clone -b v4.14.1-iOS --single-branch https://github.com/Adobe-Marketing-Cloud/mobile-services.git
+git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud/video-heartbeat-v2.git
+```
+
+
+----
 If you have questions or need help, visit the [support forum for Brightcove's Native Player SDKs][forum].
 
 [adobeheartbeat]: https://github.com/Adobe-Marketing-Cloud/video-heartbeat/
