@@ -89,9 +89,3 @@ typedef ADBMediaSettings * (^BCOVAMCMediaSettingPolicy)(id<BCOVPlaybackSession> 
 - (instancetype)initWithMediaSettingsPolicy:(BCOVAMCMediaSettingPolicy)mediaSettingPolicy;
 
 @end
-
-@interface BCOVAMCAnalyticsPolicy (Unavailable)
-
-- (instancetype)init __attribute__((unavailable("Use `-[BCOVAMCAnalyticsPolicy initWithHeartbeatConfigurationPolicy:videoInfoPolicy:]` or `-[BCOVAMCAnalyticsPolicy initWithMediaSettingsPolicy:]` instead.")));
-
-@end

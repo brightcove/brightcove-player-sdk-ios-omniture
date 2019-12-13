@@ -55,12 +55,6 @@
 
 @end
 
-@interface BCOVAMCSessionConsumer (Unavailable)
-
-- (instancetype)init __attribute__((unavailable("Use `-[BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:delegate:]` or `-[BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:delegate:]` instead.")));
-
-@end
-
 /**
  * Optional methods which may be implemented by delegates of an AMC session
  * comsumer for Adobe video heartbeat analytics.
@@ -89,7 +83,7 @@
 @optional
 
 /**
- * Called every second in order to provide the most recent medita state.
+ * Called every second in order to provide the most recent media state.
  *
  * @param session The playback session with AMC session comsumer
  * specified for Adobe video Media analytics.

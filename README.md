@@ -1,4 +1,10 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.5.0.745
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.6.0.817
+
+Requirements
+============
+
+- Xcode 11.0+
+- ARC
 
 Supported Platforms
 ===================
