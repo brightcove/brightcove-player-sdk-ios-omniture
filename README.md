@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.7.6.1121
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.7.7.1171
 
 Requirements
 ============
@@ -14,9 +14,7 @@ iOS 11.0 and above.
 Installation
 ============
 
-The Omniture plugin is a static library framework for iOS 8 and above.
-
-The Omniture plugin currently supports Adobe Marketing Cloud v4.14.1 and Adobe Video Heartbeat v2.0.1. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and **must** be added manually to your project. Instructions for downloading the libraries are provided below.
+The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.14.1 and Adobe Video Heartbeat v2.0.1. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.
 
 CocoaPods
 ---------
@@ -25,15 +23,17 @@ You can use [CocoaPods][cocoapods] version 1.0 or higher to add the Omniture plu
 
 Static Framework example:
 
-```
+```bash
 source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
-pod 'Brightcove-Player-Omniture'
+target 'MyOmniturePlayer' do
+  pod 'Brightcove-Player-Omniture'
+end
 ```
 
 When updating your installation, it's a good idea to refresh the local copy of your BrightcoveSpecs repository so that you have the latest podspecs locally, just like you would update your CococaPods master repository.
 
-Typically if you use `pod update` in Terminal this will happen automatically, or alternatively you can update explicitly with `pod repo update brightcove`. (Your BrightcoveSpecs repository may have a different name if you explicitly added it to your list of podspecs repos.)
+Typically if you use `pod update` in Terminal this will happen automatically, or alternatively you can update explicitly with `pod repo update`.
 
 Manual
 ------
@@ -75,54 +75,55 @@ Video Heartbeat v2
 
 This example uses video heartbeat tracking.
 
+```
+[1] // Create the VHB configuration policy object.
+    BCOVAMCVideoHeartbeatConfigurationPolicy videoHeartbeatConfigurationPolicy = ^ADBMediaHeartbeatConfig *(id<BCOVPlaybackSession> session) {
 
-    [1] // Create the VHB configuration policy object.
-        BCOVAMCVideoHeartbeatConfigurationPolicy videoHeartbeatConfigurationPolicy = ^ADBMediaHeartbeatConfig *(id<BCOVPlaybackSession> session) {
+        ADBMediaHeartbeatConfig *configData = [[ADBMediaHeartbeatConfig alloc] init];
+        
+        configData.trackingServer = <adobe-assigned_tracking_server>";
+        configData.channel = <cutomize_sample_channel>;
+        configData.appVersion = <app_version>;
+        configData.ovp = <online_video_platform>;
+        configData.playerName = <player_name>;
+        configData.ssl = <YES | NO>;
 
-            ADBMediaHeartbeatConfig *configData = [[ADBMediaHeartbeatConfig alloc] init];
-            
-            configData.trackingServer = <adobe-assigned_tracking_server>";
-            configData.channel = <cutomize_sample_channel>;
-            configData.appVersion = <app_version>;
-            configData.ovp = <online_video_platform>;
-            configData.playerName = <player_name>;
-            configData.ssl = <YES | NO>;
+        // Set debugLogging to true to activate debug tracing. Remove it in production.
+        configData.debugLogging = YES;
+        
+        return configData;
+    };
 
-            // Set debugLogging to true to activate debug tracing. Remove it in production.
-            configData.debugLogging = YES;
-            
-            return configData;
-        };
+[2] // Create the Brightcove AMC analytics policy object fromw1w the VHB configuration policy object.
+    BCOVAMCAnalyticsPolicy *heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy:videoHeartbeatConfigPolicy];
 
-    [2] // Create the Brightcove AMC analytics policy object fromw1w the VHB configuration policy object.
-        BCOVAMCAnalyticsPolicy *heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy:videoHeartbeatConfigPolicy];
-    
-        BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
-   	   
-        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-        id<BCOVPlaybackController> controller = [manager createPlaybackController];
-        controller.delegate = self;
-        [self.view addSubview:controller.view];
-       
-    [3] // Add the Brightcove AMC session consumer to the playback controller.
-        [controller addSessionConsumer:sessionConsumer];       
+    BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
+   
+    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+    id<BCOVPlaybackController> controller = [manager createPlaybackController];
+    controller.delegate = self;
+    [self.view addSubview:controller.view];
+   
+[3] // Add the Brightcove AMC session consumer to the playback controller.
+    [controller addSessionConsumer:sessionConsumer];       
 
-    [4] // Find and play a video.
-        NSString *policyKey = <your-policy-key>;
-        NSString *accountId = <your-account-id>;
-        NSString *videoID = <your-video-id>;
-        BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
-                                                                            policyKey:policyKey];
-        [service findVideoWithVideoID:videoID
-                           parameters:nil
-                           completion:^(BCOVVideo    *video,
-                                        NSDictionary *jsonResponse,
-                                        NSError      *error) {
+[4] // Find and play a video.
+    NSString *policyKey = <your-policy-key>;
+    NSString *accountId = <your-account-id>;
+    NSString *videoID = <your-video-id>;
+    BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
+                                                                        policyKey:policyKey];
+    [service findVideoWithVideoID:videoID
+                       parameters:nil
+                       completion:^(BCOVVideo    *video,
+                                    NSDictionary *jsonResponse,
+                                    NSError      *error) {
 
-            [controller setVideos:@[ video ]];
-            [controller play];
+        [controller setVideos:@[ video ]];
+        [controller play];
 
-        }];
+    }];
+```
        
 1. Create the video heartbeat configuration policy block which will be called at the start of each playback session. The policy allows for customization of configuration data based on the current session.
 1. Use the configuration policy block to create and initialize a BCOVAMCAnalyticsPolicy instance with `-[initWithHeartbeatConfigurationPolicy:]`. The BCOVAMCAnalyticsPolicy object is used to create the BCOVAMCSessionConsumer.
@@ -133,48 +134,46 @@ Marketing Cloud
 
 This example uses media tracking.
 
+```
+[1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id<BCOVPlaybackSession> session) {
 
+      ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:<cutomize_setting_name>
+[2]                                                                length:0
+                                                               playerName:<cutomize_player_name>
+                                                                 playerID:<cutomize_player_ID>];
+[3]   settings.milestones = @"25,50,75"; // a customization.
+      return settings;
 
-    [1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id<BCOVPlaybackSession> session) {
-	
-            ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:<cutomize_setting_name>
-    [2]                                                                  length:0
-                                                                     playerName:<cutomize_player_name>
-                                                                       playerID:<cutomize_player_ID>];
-    [3]     settings.milestones = @"25,50,75"; // a customization.
-            return settings;
+    };
 
-        };
+[4] BBCOVAMCAnalyticsPolicy *mediaPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithMediaSettingsPolicy:mediaSettingPolicy];
 
-    [4] BBCOVAMCAnalyticsPolicy *mediaPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithMediaSettingsPolicy:mediaSettingPolicy];
-    
-        BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy
-                                                                                                  delegate:self];
+    BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy
+                                                                                              delegate:self];
 
-        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-        id<BCOVPlaybackController> controller = [manager createPlaybackController];
-        controller.delegate = self;
-        [self.view addSubview:controller.view];
-       
-    [5] [controller addSessionConsumer:sessionConsumer];       
+    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+    id<BCOVPlaybackController> controller = [manager createPlaybackController];
+    controller.delegate = self;
+    [self.view addSubview:controller.view];
+   
+[5] [controller addSessionConsumer:sessionConsumer];       
 
-        NSString *policyKey = <your-policy-key>;
-        NSString *accountId = <your-account-id>;
-        NSString *videoID = <your-video-id>;
-        BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
-                                                                            policyKey:policyKey];
-        [service findVideoWithVideoID:videoID
-                           parameters:nil
-                           completion:^(BCOVVideo    *video,
-                                        NSDictionary *jsonResponse,
-                                        NSError      *error) {
+    NSString *policyKey = <your-policy-key>;
+    NSString *accountId = <your-account-id>;
+    NSString *videoID = <your-video-id>;
+    BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
+                                                                        policyKey:policyKey];
+    [service findVideoWithVideoID:videoID
+                       parameters:nil
+                       completion:^(BCOVVideo    *video,
+                                    NSDictionary *jsonResponse,
+                                    NSError      *error) {
 
-            [controller setVideos:@[ video ]];
-            [controller play];
+      [controller setVideos:@[ video ]];
+      [controller play];
 
-        }];
-       
-
+    }];
+```
 
 1. Create the media settings policy block which will be called at the start of each playback session. The policy allows for customization of media settings based on the current session.
 1. When creating the ADBMediaSettings instance with a class method of ADBMobile `+[mediaCreateSettingsWithName:length:playerName:playerID:]`, you can set **video length** to **0**. The Omniture plugin will update it later.
