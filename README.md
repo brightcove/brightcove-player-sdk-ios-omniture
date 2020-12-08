@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.8.1.1355
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.8.2.1421
 
 Requirements
 ============
@@ -57,8 +57,8 @@ To add the Omniture Plugin for Brightcove Player SDK to your project manually:
 [podspecs]: https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-Omniture
 [release]: https://github.com/brightcove/brightcove-player-sdk-ios-omniture/releases
 [bcovsdkmanualsetup]: https://github.com/brightcove/brightcove-player-sdk-ios#ManualInstallation
-[adobemarketingcloud]: https://marketing.adobe.com/developer/gallery/app-measurement-for-ios
-[adobevideoheartbeat]: https://marketing.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0
+[adobemarketingcloud]: https://docs.adobe.com/content/help/en/mobile-services/ios/overview.html
+[adobevideoheartbeat]: https://marketing-stage.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0/
 
 Quick Start
 ===========
@@ -192,8 +192,9 @@ git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud
 ```
 
 
-----
-If you have questions or need help, visit the [support forum for Brightcove's Native Player SDKs][forum].
+Support
+=======
+If you have questions, need help or want to provide feedback, please use the [Support Portal](https://supportportal.brightcove.com/s/login/) or contact your Account Manager.  To receive notification of new SDK software releases, subscribe to the Brightcove Native Player SDKs [Google Group](https://groups.google.com/g/brightcove-native-player-sdks).
 
 [adobeheartbeat]: https://github.com/Adobe-Marketing-Cloud/video-heartbeat/
 [adobemobileservice]: https://github.com/Adobe-Marketing-Cloud/mobile-services
