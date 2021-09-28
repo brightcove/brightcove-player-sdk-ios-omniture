@@ -1,0 +1,6 @@
+framework module BrightcoveAMC {
+  umbrella header "BrightcoveAMC.h"
+
+  export *
+  module * { export * }
+}

@@ -44,7 +44,7 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.9.1.1726</h1>
+						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.0.1786</h1>
 
 <h1>Requirements</h1>
 
@@ -76,6 +76,18 @@ source &lsquo;<a href="https://github.com/brightcove/BrightcoveSpecs.git" title=
 end
 ```</p>
 
+<p>XCFramework will be installed appending the <code>/XCFramework</code> subspec in the pod.</p>
+
+<p>XCFramework example:</p>
+
+<p>```bash
+source &lsquo;https://github.com/brightcove/BrightcoveSpecs.git&rsquo;</p>
+
+<p>target &lsquo;MyOmniturePlayer&rsquo; do
+  pod &lsquo;Brightcove-Player-Omniture/XCFramework&rsquo;
+end
+```</p>
+
 <p>When updating your installation, it&rsquo;s a good idea to refresh the local copy of your BrightcoveSpecs repository so that you have the latest podspecs locally, just like you would update your CococaPods master repository.</p>
 
 <p>Typically if you use <code>pod update</code> in Terminal this will happen automatically, or alternatively you can update explicitly with <code>pod repo update</code>.</p>
@@ -87,13 +99,13 @@ end
 <ol>
 <li>Install the latest version of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios#ManualInstallation">Brightcove Player SDK</a>.</li>
 <li>Download the latest zip'ed release of the plugin from the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture/releases">release page</a>.</li>
-<li>Add the <code>BrightcoveAMC.framework</code> project.  You can do this by right-clicking on the Frameworks folder and choose &ldquo;Add Files To&rdquo; option and select the <code>BrightcoveAMC.framework</code> from the path where it is stored.</li>
+<li>Add the <code>BrightcoveAMC.framework</code> or <code>BrightcoveAMC.xcframework</code> project.  You can do this by right-clicking on the Frameworks folder and choose &ldquo;Add Files To&rdquo; option and select the <code>BrightcoveAMC.framework</code> or <code>BrightcoveAMC.xcframework</code> from the path where it is stored.</li>
 <li>On the &ldquo;Build Settings&rdquo; tab of your application target, ensure that the &ldquo;Framework Search Paths&rdquo; include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.</li>
 <li>On the &ldquo;Build Phases&rdquo; tab of your application target, add the following to the &ldquo;Link
  Binary With Libraries&rdquo; phase:
 
 <ul>
-<li><code>BrightcoveAMC.framework</code></li>
+<li><code>BrightcoveAMC.framework</code> / <code>BrightcoveAMC.xcframework</code></li>
 </ul>
 </li>
 <li>On the &ldquo;Build Settings&rdquo; tab of your application target:
@@ -105,6 +117,13 @@ end
 <li>Download Adobe Marketing Cloud following Adobe&rsquo;s <a href="https://docs.adobe.com/content/help/en/mobile-services/ios/overview.html">instructions</a> and add <code>AdobeMobileLibrary.a</code> to your project.</li>
 <li>Download Adobe Video Heartbeat following Adobe&rsquo;s <a href="https://marketing-stage.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0/">instructions</a> and add <code>VideoHeartbeat.a</code> to your project.</li>
 <li>Add the Marketing Cloud and Video Heartbeat header folders to the Header Search Path settings of your project.</li>
+<li>(<strong>Universal Framework</strong> only) On the &ldquo;Build Phases&rdquo; tab, add a &ldquo;Run Script&rdquo; phase with the command <code>bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveAMC.framework/strip-frameworks.sh</code>. Check &ldquo;Run script only when installing&rdquo;. This will remove unneeded architectures from the build, which is important for App Store submission.</li>
+<li>(<strong>Apple Silicon</strong> only) On the &ldquo;Build Settings&rdquo; tab of your application target:
+
+<ul>
+<li>Ensure that <code>arm64</code> has been added to your &ldquo;Excluded Architectures&rdquo; build setting for <code>Any iOS Simulator SDK</code>.</li>
+</ul>
+</li>
 </ol>
 
 
@@ -114,7 +133,7 @@ end
 
 <h1>Client Implementation</h1>
 
-<p>To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instances of BCOVAMCVideoHeartbeatConfigurationPolicy. To setup Adobe Media Tracking, an instance of BCOVAMCMediaSettingPolicy is required. These <a href="https://en.wikipedia.org/wiki/Strategy_pattern">policies</a> allow for customization of ADBMediaHeartbeatConfig or ADBMediaSettings objects for each playback session.</p>
+<p>To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instances of <a href="Blocks/BCOVAMCVideoHeartbeatConfigurationPolicy.html">BCOVAMCVideoHeartbeatConfigurationPolicy</a>. To setup Adobe Media Tracking, an instance of <a href="Blocks/BCOVAMCMediaSettingPolicy.html">BCOVAMCMediaSettingPolicy</a> is required. These <a href="https://en.wikipedia.org/wiki/Strategy_pattern">policies</a> allow for customization of ADBMediaHeartbeatConfig or ADBMediaSettings objects for each playback session.</p>
 
 <h2>Video Heartbeat v2</h2>
 
@@ -171,7 +190,7 @@ end
 
 <ol>
 <li>Create the video heartbeat configuration policy block which will be called at the start of each playback session. The policy allows for customization of configuration data based on the current session.</li>
-<li>Use the configuration policy block to create and initialize a BCOVAMCAnalyticsPolicy instance with <code>-[initWithHeartbeatConfigurationPolicy:]</code>. The BCOVAMCAnalyticsPolicy object is used to create the BCOVAMCSessionConsumer.</li>
+<li>Use the configuration policy block to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <code>-[initWithHeartbeatConfigurationPolicy:]</code>. The <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> object is used to create the <a href="Classes/BCOVAMCSessionConsumer.html">BCOVAMCSessionConsumer</a>.</li>
 <li>After the playback controller is created, call the add session consumer method, <code>-[addSessionConsumer:]</code>, to add the AMC session consumer.</li>
 </ol>
 
@@ -224,7 +243,7 @@ end
 <li>Create the media settings policy block which will be called at the start of each playback session. The policy allows for customization of media settings based on the current session.</li>
 <li>When creating the ADBMediaSettings instance with a class method of ADBMobile <code>+[mediaCreateSettingsWithName:length:playerName:playerID:]</code>, you can set <strong>video length</strong> to <strong>0</strong>. The Omniture plugin will update it later.</li>
 <li>Add optional settings such as milestones.</li>
-<li>Use the media settings policy block to create and initialize a BCOVAMCAnalyticsPolicy instance with <code>-[initWithMediaSettingsPolicy:]</code>. The policy object is used to create an AMC session consumer for Adobe media tracking as <code>+[mediaAnalyticsConsumerWithPolicy:delegate:]</code>.</li>
+<li>Use the media settings policy block to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <code>-[initWithMediaSettingsPolicy:]</code>. The policy object is used to create an AMC session consumer for Adobe media tracking as <code>+[mediaAnalyticsConsumerWithPolicy:delegate:]</code>.</li>
 <li>After the playback controller is created, call the add session consumer method, <code>-[addSessionConsumer:]</code>, to add the AMC session consumer.</li>
 </ol>
 
@@ -284,7 +303,7 @@ git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2021 Brightcove. All rights reserved. Updated: 2021-08-16</p>
+							<p class="copyright">Copyright &copy; 2021 Brightcove. All rights reserved. Updated: 2021-09-27</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
