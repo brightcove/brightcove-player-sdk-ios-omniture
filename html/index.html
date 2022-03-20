@@ -44,29 +44,17 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.2.1847</h1>
+						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.3.2003</h1>
 
-<h1>Requirements</h1>
-
-<ul>
-<li>Xcode 11.0+</li>
-<li>ARC</li>
-</ul>
-
-
-<h1>Supported Platforms</h1>
-
-<p>iOS 11.0 and above.</p>
-
-<h1>Installation</h1>
+<h2>Installation</h2>
 
 <p>The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.14.1 and Adobe Video Heartbeat v2.0.1. The Marketing Cloud and Video Heartbeat libraries <strong>are not</strong> included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.</p>
 
-<h2>CocoaPods</h2>
+<h3>CocoaPods</h3>
 
-<p>You can use <a href="http://cocoapods.org">CocoaPods</a> version 1.0 or higher to add the Omniture plugin to your project.  You can find the latest <code>Brightcove-Player-Omniture</code> podspec <a href="https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-Omniture">here</a>. To use this spec, add the following to the top of your Podfile: <code>source '</code>https://github.com/brightcove/BCOVSpecs.git'<code></code>.</p>
+<p>You can use <a href="http://cocoapods.org">CocoaPods</a> to add the Omniture plugin to your project.  You can find the latest <code>Brightcove-Player-Omniture</code> podspec <a href="https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-Omniture">here</a>. To use this spec, add the following to the top of your Podfile: <code>source '</code>https://github.com/brightcove/BCOVSpecs.git'<code></code>.</p>
 
-<p>Static Framework example:</p>
+<h4>Static Framework example:</h4>
 
 <p>```bash
 source &lsquo;<a href="https://github.com/brightcove/BrightcoveSpecs.git" title="">https://github.com/brightcove/BrightcoveSpecs.git'</a></p>
@@ -76,9 +64,9 @@ source &lsquo;<a href="https://github.com/brightcove/BrightcoveSpecs.git" title=
 end
 ```</p>
 
-<p>XCFramework will be installed appending the <code>/XCFramework</code> subspec in the pod.</p>
+<h4>XCFramework example:</h4>
 
-<p>XCFramework example:</p>
+<p>XCFrameworks can be installed by appending the <code>/XCFramework</code> subspec to the pod name.</p>
 
 <p>```bash
 source &lsquo;https://github.com/brightcove/BrightcoveSpecs.git&rsquo;</p>
@@ -88,11 +76,7 @@ source &lsquo;https://github.com/brightcove/BrightcoveSpecs.git&rsquo;</p>
 end
 ```</p>
 
-<p>When updating your installation, it&rsquo;s a good idea to refresh the local copy of your BrightcoveSpecs repository so that you have the latest podspecs locally, just like you would update your CococaPods master repository.</p>
-
-<p>Typically if you use <code>pod update</code> in Terminal this will happen automatically, or alternatively you can update explicitly with <code>pod repo update</code>.</p>
-
-<h2>Manual</h2>
+<h3>Manual</h3>
 
 <p>To add the Omniture Plugin for Brightcove Player SDK to your project manually:</p>
 
@@ -127,15 +111,15 @@ end
 </ol>
 
 
-<h1>Quick Start</h1>
+<h2>Quick Start</h2>
 
 <p>BrightcoveAMC is a bridge between the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK for iOS</a> and Adobe video tracking, including <a href="https://marketing-stage.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0/">Adobe Video Heartbeat v2</a> and <a href="https://github.com/Adobe-Marketing-Cloud/mobile-services">Adobe Media Tracking v4</a>. BrightcoveAMC tracks basic video behaviors: video ready, video completed, video play, and video pause.</p>
 
-<h1>Client Implementation</h1>
+<h2>Client Implementation</h2>
 
 <p>To setup Adobe Video Heartbeat, Omniture Plugin clients need to implement instances of <a href="Blocks/BCOVAMCVideoHeartbeatConfigurationPolicy.html">BCOVAMCVideoHeartbeatConfigurationPolicy</a>. To setup Adobe Media Tracking, an instance of <a href="Blocks/BCOVAMCMediaSettingPolicy.html">BCOVAMCMediaSettingPolicy</a> is required. These <a href="https://en.wikipedia.org/wiki/Strategy_pattern">policies</a> allow for customization of ADBMediaHeartbeatConfig or ADBMediaSettings objects for each playback session.</p>
 
-<h2>Video Heartbeat v2</h2>
+<h3>Video Heartbeat v2</h3>
 
 <p>This example uses video heartbeat tracking.</p>
 
@@ -195,7 +179,7 @@ end
 </ol>
 
 
-<h2>Marketing Cloud</h2>
+<h3>Marketing Cloud</h3>
 
 <p>This example uses media tracking.</p>
 
@@ -248,7 +232,7 @@ end
 </ol>
 
 
-<h1>Adobe-Marketing-Cloud.git</h1>
+<h2>Adobe-Marketing-Cloud.git</h2>
 
 <p>To fetch the Adobe Marketing Cloud libraries, run the following:</p>
 
@@ -256,7 +240,7 @@ end
 git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud/video-heartbeat-v2.git
 </code></pre>
 
-<h1>Support</h1>
+<h2>Support</h2>
 
 <p>If you have questions, need help or want to provide feedback, please use the <a href="https://supportportal.brightcove.com/s/login/">Support Portal</a> or contact your Account Manager.  To receive notification of new SDK software releases, subscribe to the Brightcove Native Player SDKs <a href="https://groups.google.com/g/brightcove-native-player-sdks">Google Group</a>.</p>
 						
@@ -303,7 +287,7 @@ git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2021 Brightcove. All rights reserved. Updated: 2021-11-18</p>
+							<p class="copyright">Copyright &copy; 2022 Brightcove. All rights reserved. Updated: 2022-03-17</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
