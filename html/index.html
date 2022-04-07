@@ -44,11 +44,11 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.3.2005</h1>
+						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.4.2043</h1>
 
 <h2>Installation</h2>
 
-<p>The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.14.1 and Adobe Video Heartbeat v2.0.1. The Marketing Cloud and Video Heartbeat libraries <strong>are not</strong> included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.</p>
+<p>The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.21.2 and Adobe Video Heartbeat v2.3.0. The Marketing Cloud and Video Heartbeat libraries <strong>are not</strong> included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.</p>
 
 <h3>CocoaPods</h3>
 
@@ -98,8 +98,8 @@ end
 <li>Ensure that <code>-ObjC</code> has been added to the &ldquo;Other Linker Flags&rdquo; build setting.</li>
 </ul>
 </li>
-<li>Download Adobe Marketing Cloud following Adobe&rsquo;s <a href="https://docs.adobe.com/content/help/en/mobile-services/ios/overview.html">instructions</a> and add <code>AdobeMobileLibrary.a</code> to your project.</li>
-<li>Download Adobe Video Heartbeat following Adobe&rsquo;s <a href="https://marketing-stage.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0/">instructions</a> and add <code>VideoHeartbeat.a</code> to your project.</li>
+<li>Download Adobe Marketing Cloud following Adobe&rsquo;s <a href="https://docs.adobe.com/content/help/en/mobile-services/ios/overview.html">instructions</a> and add <code>AdobeMobile.xcframework</code> to your project.</li>
+<li>Download Adobe Video Heartbeat following Adobe&rsquo;s <a href="https://experienceleague.adobe.com/docs/media-analytics/using/sdk-implement/download-sdks.html?lang=en">instructions</a> and add <code>MediaSDK.xcframework</code> to your project.</li>
 <li>Add the Marketing Cloud and Video Heartbeat header folders to the Header Search Path settings of your project.</li>
 <li>(<strong>Universal Framework</strong> only) On the &ldquo;Build Phases&rdquo; tab, add a &ldquo;Run Script&rdquo; phase with the command <code>bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveAMC.framework/strip-frameworks.sh</code>. Check &ldquo;Run script only when installing&rdquo;. This will remove unneeded architectures from the build, which is important for App Store submission.</li>
 <li>(<strong>Apple Silicon</strong> only) On the &ldquo;Build Settings&rdquo; tab of your application target:
@@ -113,7 +113,7 @@ end
 
 <h2>Quick Start</h2>
 
-<p>BrightcoveAMC is a bridge between the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK for iOS</a> and Adobe video tracking, including <a href="https://marketing-stage.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0/">Adobe Video Heartbeat v2</a> and <a href="https://github.com/Adobe-Marketing-Cloud/mobile-services">Adobe Media Tracking v4</a>. BrightcoveAMC tracks basic video behaviors: video ready, video completed, video play, and video pause.</p>
+<p>BrightcoveAMC is a bridge between the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK for iOS</a> and Adobe video tracking, including <a href="https://experienceleague.adobe.com/docs/media-analytics/using/sdk-implement/download-sdks.html?lang=en">Adobe Video Heartbeat v2</a> and <a href="https://github.com/Adobe-Marketing-Cloud/mobile-services">Adobe Media Tracking v4</a>. BrightcoveAMC tracks basic video behaviors: video ready, video completed, video play, and video pause.</p>
 
 <h2>Client Implementation</h2>
 
@@ -234,10 +234,10 @@ end
 
 <h2>Adobe-Marketing-Cloud.git</h2>
 
-<p>To fetch the Adobe Marketing Cloud libraries, run the following:</p>
+<p>To fetch the Adobe Marketing Cloud libraries, download the following:</p>
 
-<pre><code>git clone -b v4.14.1-iOS --single-branch https://github.com/Adobe-Marketing-Cloud/mobile-services.git
-git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud/video-heartbeat-v2.git
+<pre><code>https://github.com/Adobe-Marketing-Cloud/media-sdks/archive/refs/tags/ios-v2.3.0.zip
+https://github.com/Adobe-Marketing-Cloud/mobile-services/archive/refs/tags/v4.21.2-iOS.zip
 </code></pre>
 
 <h2>Support</h2>
@@ -287,7 +287,7 @@ git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2022 Brightcove. All rights reserved. Updated: 2022-03-20</p>
+							<p class="copyright">Copyright &copy; 2022 Brightcove. All rights reserved. Updated: 2022-04-07</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

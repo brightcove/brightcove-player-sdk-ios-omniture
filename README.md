@@ -1,8 +1,8 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.3.2005
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.4.2043
 
 ## Installation
 
-The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.14.1 and Adobe Video Heartbeat v2.0.1. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.
+The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.21.2 and Adobe Video Heartbeat v2.3.0. The Marketing Cloud and Video Heartbeat libraries **are not** included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.
 
 ### CocoaPods
 
@@ -43,8 +43,8 @@ To add the Omniture Plugin for Brightcove Player SDK to your project manually:
     * `BrightcoveAMC.framework` / `BrightcoveAMC.xcframework`
 1. On the "Build Settings" tab of your application target:
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
-1. Download Adobe Marketing Cloud following Adobe's [instructions][adobemarketingcloud] and add `AdobeMobileLibrary.a` to your project.
-1. Download Adobe Video Heartbeat following Adobe's [instructions][adobevideoheartbeat] and add `VideoHeartbeat.a` to your project.
+1. Download Adobe Marketing Cloud following Adobe's [instructions][adobemarketingcloud] and add `AdobeMobile.xcframework` to your project.
+1. Download Adobe Video Heartbeat following Adobe's [instructions][adobevideoheartbeat] and add `MediaSDK.xcframework` to your project.
 1. Add the Marketing Cloud and Video Heartbeat header folders to the Header Search Path settings of your project.
 1. (**Universal Framework** only) On the "Build Phases" tab, add a "Run Script" phase with the command `bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveAMC.framework/strip-frameworks.sh`. Check "Run script only when installing". This will remove unneeded architectures from the build, which is important for App Store submission.
 1. (**Apple Silicon** only) On the "Build Settings" tab of your application target:
@@ -55,7 +55,7 @@ To add the Omniture Plugin for Brightcove Player SDK to your project manually:
 [release]: https://github.com/brightcove/brightcove-player-sdk-ios-omniture/releases
 [bcovsdkmanualsetup]: https://github.com/brightcove/brightcove-player-sdk-ios#ManualInstallation
 [adobemarketingcloud]: https://docs.adobe.com/content/help/en/mobile-services/ios/overview.html
-[adobevideoheartbeat]: https://marketing-stage.adobe.com/resources/help/en_US/sc/appmeasurement/hbvideo/ios_2.0/
+[adobevideoheartbeat]: https://experienceleague.adobe.com/docs/media-analytics/using/sdk-implement/download-sdks.html?lang=en
 
 ## Quick Start
 
@@ -178,11 +178,11 @@ This example uses media tracking.
 
 ## Adobe-Marketing-Cloud.git
 
-To fetch the Adobe Marketing Cloud libraries, run the following:
+To fetch the Adobe Marketing Cloud libraries, download the following:
 
 ```
-git clone -b v4.14.1-iOS --single-branch https://github.com/Adobe-Marketing-Cloud/mobile-services.git
-git clone -b ios-v2.0.1 --single-branch https://github.com/Adobe-Marketing-Cloud/video-heartbeat-v2.git
+https://github.com/Adobe-Marketing-Cloud/media-sdks/archive/refs/tags/ios-v2.3.0.zip
+https://github.com/Adobe-Marketing-Cloud/mobile-services/archive/refs/tags/v4.21.2-iOS.zip
 ```
 
 ## Support
