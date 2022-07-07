@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.5.2109
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.10.6.2156
 
 ## Installation
 
@@ -62,7 +62,7 @@ To add the Omniture Plugin for Brightcove Player SDK to your project manually:
 To add the SSAI Plugin for Brightcove Player SDK to your project with Swift Package Manager: 
 
 1. First [follow the steps][corespm] to add the Core XCFramework with Swift Package Mananger.
-1. Add the SSAI package to Swift Package Manager using `https://github.com/brightcove/brightcove-player-sdk-ios-ssai.git`.
+1. Add the SSAI package to Swift Package Manager using `https://github.com/brightcove/brightcove-player-sdk-ios-omniture.git`.
 1. Link to the following libraries:
     * libsqlite3.0.tbd
 1. On the "Build Settings" tab of your application target:
@@ -70,8 +70,6 @@ To add the SSAI Plugin for Brightcove Player SDK to your project with Swift Pack
 1. Download Adobe Marketing Cloud following Adobe's [instructions][adobemarketingcloud] and add `AdobeMobile.xcframework` to your project.
 1. Download Adobe Video Heartbeat following Adobe's [instructions][adobevideoheartbeat] and add `MediaSDK.xcframework` to your project.
 1. Add the Marketing Cloud and Video Heartbeat header folders to the Header Search Path settings of your project.
-
-*Note: The Open Measurement XCFramework will be automatically installed with the SSAI XCFramework.*
 
 [corespm]: https://github.com/brightcove/brightcove-player-sdk-ios#SwiftPackageManager
 
