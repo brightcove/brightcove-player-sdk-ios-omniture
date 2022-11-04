@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.11.0.2264
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.11.1.2309
 
 ## Installation
 
@@ -11,7 +11,11 @@ You can use [CocoaPods][cocoapods] to add the Omniture plugin to your project.  
 #### Static Framework example:
 
 ```bash
+source 'https://github.com/CocoaPods/Specs'
 source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+platform :ios, '11.4'
+use_frameworks!
 
 target 'MyOmniturePlayer' do
   pod 'Brightcove-Player-Omniture'
@@ -23,7 +27,11 @@ end
 XCFrameworks can be installed by appending the `/XCFramework` subspec to the pod name.
 
 ```bash
+source 'https://github.com/CocoaPods/Specs'
 source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+platform :ios, '11.4'
+use_frameworks!
 
 target 'MyOmniturePlayer' do
   pod 'Brightcove-Player-Omniture/XCFramework'
