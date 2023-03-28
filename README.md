@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.12.0.2391
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.12.1.2421
 
 ## Installation
 
@@ -133,14 +133,17 @@ This example uses video heartbeat tracking.
     NSString *videoID = <your-video-id>;
     BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
                                                                         policyKey:policyKey];
-    [service findVideoWithVideoID:videoID
-                       parameters:nil
-                       completion:^(BCOVVideo    *video,
-                                    NSDictionary *jsonResponse,
-                                    NSError      *error) {
+    NSDictionary *configuration = @{
+        kBCOVPlaybackServiceConfigurationKeyVideoID:videoID
+    };
+    [service findVideoWithConfiguration:configuration
+                        queryParameters:nil
+                             completion:^(BCOVVideo    *video,
+                                          NSDictionary *jsonResponse,
+                                          NSError      *error) {
 
-        [controller setVideos:@[ video ]];
-        [controller play];
+          [controller setVideos:@[ video ]];
+          [controller play];
 
     }];
 ```
@@ -182,14 +185,17 @@ This example uses media tracking.
     NSString *videoID = <your-video-id>;
     BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
                                                                         policyKey:policyKey];
-    [service findVideoWithVideoID:videoID
-                       parameters:nil
-                       completion:^(BCOVVideo    *video,
-                                    NSDictionary *jsonResponse,
-                                    NSError      *error) {
+    NSDictionary *configuration = @{
+        kBCOVPlaybackServiceConfigurationKeyAssetID:videoID
+    };
+    [service findVideoWithConfiguration:configuration
+                        queryParameters:nil
+                             completion:^(BCOVVideo    *video,
+                                          NSDictionary *jsonResponse,
+                                          NSError      *error) {
 
-      [controller setVideos:@[ video ]];
-      [controller play];
+          [controller setVideos:@[ video ]];
+          [controller play];
 
     }];
 ```
