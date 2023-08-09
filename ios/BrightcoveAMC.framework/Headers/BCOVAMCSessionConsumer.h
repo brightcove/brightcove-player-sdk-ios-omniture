@@ -45,7 +45,7 @@
  * Returns a session consumer for Adobe video media analytics that is
  * initialized with a specified media policy and an optional delegate.
  *
- * @param heartbeatPolicy A `BCOVAMCAnalyticsPolicy` instance specifies Adobe
+ * @param mediaPolicy A `BCOVAMCAnalyticsPolicy` instance specifies Adobe
  * video media analytics.
  * @param delegate An optional delegate conforming to the
  * `BCOVAMCSessionConsumerMeidaDelegate` protocol.
