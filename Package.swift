@@ -7,7 +7,7 @@ import PackageDescription
 let BrightcovePlayerSDK = Package(
     name: "Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v12)
     ],
     products: [
         .library(
