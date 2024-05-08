@@ -40,20 +40,20 @@ typedef ADBMediaHeartbeatConfig * (^BCOVAMCVideoHeartbeatConfigurationPolicy)(id
  * by the `BCOVAMCSessionConsumer` instance later.
  *
  * @param session The new playback session is ready to be processed.
- * @return The meida setting of the new playback session for Adobe media 
+ * @return The media setting of the new playback session for Adobe media
  * tracking.
  */
 typedef ADBMediaSettings * (^BCOVAMCMediaSettingPolicy)(id<BCOVPlaybackSession> session);
 
 /**
- * This policy allows clients to specify the configuration data required by 
+ * This policy allows clients to specify the configuration data required by
  * Adobe video Heartbeat tracking, media tracking and video info.
  */
 
 @interface BCOVAMCAnalyticsPolicy : NSObject
 
 /*
- * Return a BCOVAMCVideoHeartbeatConfigurationPolicy that will be used for Adobe 
+ * Return a BCOVAMCVideoHeartbeatConfigurationPolicy that will be used for Adobe
  * Media Heartbeat configuration.
  *
  * @return a BCOVAMCVideoHeartbeatConfigurationPolicy that will be used for Adobe
@@ -62,7 +62,7 @@ typedef ADBMediaSettings * (^BCOVAMCMediaSettingPolicy)(id<BCOVPlaybackSession> 
 @property (nonatomic, readonly, copy) BCOVAMCVideoHeartbeatConfigurationPolicy configurationPolicy;
 
 /*
- * Return a BCOVAMCMediaSettingPolicy that will be used for Adobe media tracking 
+ * Return a BCOVAMCMediaSettingPolicy that will be used for Adobe media tracking
  * setting.
  *
  * @return a BCOVAMCMediaSettingPolicy that will be used for Adobe media tracking
@@ -83,7 +83,7 @@ typedef ADBMediaSettings * (^BCOVAMCMediaSettingPolicy)(id<BCOVPlaybackSession> 
  * Returns an initialized instance of BCOVCuePointProgressPolicy for Adobe media
  * tracking with the specified `BCOVAMCMediaSettingPolicy`.
  *
- * @param mediaSettingPolicy a `mediaSettingPolicy` that will be used for Adobe 
+ * @param mediaSettingPolicy a `mediaSettingPolicy` that will be used for Adobe
  * media tracking setting.
  */
 - (instancetype)initWithMediaSettingsPolicy:(BCOVAMCMediaSettingPolicy)mediaSettingPolicy;

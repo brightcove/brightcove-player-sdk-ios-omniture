@@ -18,7 +18,7 @@
 
 
 @protocol BCOVAMCSessionConsumerHeartbeatDelegate;
-@protocol BCOVAMCSessionConsumerMeidaDelegate;
+@protocol BCOVAMCSessionConsumerMediaDelegate;
 
 
 /**
@@ -48,10 +48,10 @@
  * @param mediaPolicy A `BCOVAMCAnalyticsPolicy` instance specifies Adobe
  * video media analytics.
  * @param delegate An optional delegate conforming to the
- * `BCOVAMCSessionConsumerMeidaDelegate` protocol.
+ * `BCOVAMCSessionConsumerMediaDelegate` protocol.
  * @return A session consumer specifies Adobe media heartbeat analytics.
  */
-+ (instancetype)mediaAnalyticsConsumerWithPolicy:(BCOVAMCAnalyticsPolicy *)mediaPolicy delegate:(id<BCOVAMCSessionConsumerMeidaDelegate>)delegate;
++ (instancetype)mediaAnalyticsConsumerWithPolicy:(BCOVAMCAnalyticsPolicy *)mediaPolicy delegate:(id<BCOVAMCSessionConsumerMediaDelegate>)delegate;
 
 @end
 
@@ -78,7 +78,7 @@
  * Optional methods which may be implemented by delegates of an AMC session
  * comsumer for Adobe video Media analytics.
  */
-@protocol BCOVAMCSessionConsumerMeidaDelegate <NSObject>
+@protocol BCOVAMCSessionConsumerMediaDelegate <NSObject>
 
 @optional
 
