@@ -44,45 +44,43 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 6.13.3.8</h1>
+						<h1>Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 7.0.0.9</h1>
 
 <h2>Installation</h2>
 
-<p>The Omniture plugin is a static library framework which supports Adobe Marketing Cloud v4.21.2 and Adobe Video Heartbeat v2.3.0. The Marketing Cloud and Video Heartbeat libraries <strong>are not</strong> included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.</p>
+<p>The Omniture plugin is a dynamic library framework which supports Adobe Marketing Cloud v4.21.2 and Adobe Video Heartbeat v2.3.0. The Marketing Cloud and Video Heartbeat libraries <strong>are not</strong> included with this SDK and must be manually added to your project. Instructions for downloading the libraries are provided below.</p>
 
 <h3>CocoaPods</h3>
 
 <p>You can use <a href="http://cocoapods.org">CocoaPods</a> to add the Omniture plugin to your project.  You can find the latest <code>Brightcove-Player-Omniture</code> podspec <a href="https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-Omniture">here</a>. To use this spec, add the following to the top of your Podfile: <code>source '</code>https://github.com/brightcove/BCOVSpecs.git'<code></code>.</p>
 
-<h4>Static Framework example:</h4>
+<h4>Dynamic XCFramework example:</h4>
 
-<p>```bash
-source &lsquo;<a href="https://github.com/CocoaPods/Specs" title="">https://github.com/CocoaPods/Specs'</a>
-source &rsquo;<a href="https://github.com/brightcove/BrightcoveSpecs.git" title="">https://github.com/brightcove/BrightcoveSpecs.git'</a></p>
+<pre><code>source 'https://github.com/CocoaPods/Specs'
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
-<p>platform :ios, &lsquo;12.0&rsquo;
-use_frameworks!</p>
+platform :ios, '12.0'
+use_frameworks!
 
-<p>target &lsquo;MyOmniturePlayer&rsquo; do
-  pod &lsquo;Brightcove-Player-Omniture&rsquo;
+target 'MyOmniturePlayer' do
+  pod 'Brightcove-Player-Omniture'
 end
-```</p>
+</code></pre>
 
-<h4>XCFramework example:</h4>
+<h4>Framework example:</h4>
 
-<p>XCFrameworks can be installed by appending the <code>/XCFramework</code> subspec to the pod name.</p>
+<p>Frameworks can be installed by appending the <code>/Framework</code> subspec to the pod name.</p>
 
-<p>```bash
-source &lsquo;https://github.com/CocoaPods/Specs&rsquo;
-source &lsquo;https://github.com/brightcove/BrightcoveSpecs.git&rsquo;</p>
+<pre><code>source 'https://github.com/CocoaPods/Specs'
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
-<p>platform :ios, &lsquo;12.0&rsquo;
-use_frameworks!</p>
+platform :ios, '12.0'
+use_frameworks!
 
-<p>target &lsquo;MyOmniturePlayer&rsquo; do
-  pod &lsquo;Brightcove-Player-Omniture/XCFramework&rsquo;
+target 'MyOmniturePlayer' do
+  pod 'Brightcove-Player-Omniture/Framework'
 end
-```</p>
+</code></pre>
 
 <h3>Manual</h3>
 
@@ -157,61 +155,62 @@ end
 <p>This example uses video heartbeat tracking.</p>
 
 <pre><code>[1] // Create the VHB configuration policy object.
-    BCOVAMCVideoHeartbeatConfigurationPolicy videoHeartbeatConfigurationPolicy = ^ADBMediaHeartbeatConfig *(id&lt;BCOVPlaybackSession&gt; session) {
+    let videoHeartbeatConfigurationPolicy: BCOVAMCVideoHeartbeatConfigurationPolicy = {
+        (session: BCOVPlaybackSession?) in
 
-        ADBMediaHeartbeatConfig *configData = [[ADBMediaHeartbeatConfig alloc] init];
+        let configData = ADBMediaHeartbeatConfig()
 
-        configData.trackingServer = &lt;adobe-assigned_tracking_server&gt;";
-        configData.channel = &lt;cutomize_sample_channel&gt;;
-        configData.appVersion = &lt;app_version&gt;;
-        configData.ovp = &lt;online_video_platform&gt;;
-        configData.playerName = &lt;player_name&gt;;
-        configData.ssl = &lt;YES | NO&gt;;
+        configData.trackingServer = "&lt;adobe-assigned_tracking_server&gt;"
+        configData.channel = "&lt;cutomize_sample_channel&gt;"
+        configData.appVersion = "&lt;app_version&gt;"
+        configData.ovp = "&lt;online_video_platform&gt;"
+        configData.playerName = "&lt;player_name&gt;"
+        configData.ssl = false
 
         // Set debugLogging to true to activate debug tracing. Remove it in production.
-        configData.debugLogging = YES;
+        configData.debugLogging = true
 
-        return configData;
-    };
+        return configData
+    }
 
 [2] // Create the Brightcove AMC analytics policy object fromw1w the VHB configuration policy object.
-    BCOVAMCAnalyticsPolicy *heartbeatPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithHeartbeatConfigurationPolicy:videoHeartbeatConfigPolicy];
+    let heartbeatPolicy = BCOVAMCAnalyticsPolicy(heartbeatConfigurationPolicy: videoHeartbeatConfigurationPolicy)
 
-    BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer heartbeatAnalyticsConsumerWithPolicy:heartbeatPolicy delegate:self];
+    let sessionConsumer = BCOVAMCSessionConsumer.heartbeatAnalyticsConsumer(with: heartbeatPolicy, delegate: self)
 
-    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-    id&lt;BCOVPlaybackController&gt; controller = [manager createPlaybackController];
-    controller.delegate = self;
-    [self.view addSubview:controller.view];
+    let sdkManager = BCOVPlayerSDKManager.sharedManager()
+    let playbackController = sdkManager.createPlaybackController()
+    playbackController.delegate = self
+
+    videoView.addSubview(playerView)
 
 [3] // Add the Brightcove AMC session consumer to the playback controller.
-    [controller addSessionConsumer:sessionConsumer];       
+    playbackController.add(sessionConsumer)
 
 [4] // Find and play a video.
-    NSString *policyKey = &lt;your-policy-key&gt;;
-    NSString *accountId = &lt;your-account-id&gt;;
-    NSString *videoID = &lt;your-video-id&gt;;
-    BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
-                                                                        policyKey:policyKey];
-    NSDictionary *configuration = @{
-        kBCOVPlaybackServiceConfigurationKeyVideoID:videoID
-    };
-    [service findVideoWithConfiguration:configuration
-                        queryParameters:nil
-                             completion:^(BCOVVideo    *video,
-                                          NSDictionary *jsonResponse,
-                                          NSError      *error) {
-
-          [controller setVideos:@[ video ]];
-          [controller play];
-
-    }];
+    let policyKey = "&lt;your-policy-key&gt;"
+    let accountID = "&lt;your-account-id&gt;"
+    let videoID = "&lt;your-video-id&gt;"
+    let playbackService = BCOVPlaybackService(withAccountId: accountID,
+                                              policyKey: policyKey)
+    let configuration = [
+        BCOVPlaybackService.ConfigurationKeyAssetID: videoID
+    ]
+    playbackService.findVideo(withConfiguration: configuration,
+                              queryParameters: nil) { (video: BCOVVideo?,
+                                                       jsonResponse: Any?,
+                                                       error: Error?) in
+        if let video {
+            playbackController.setVideos([video])
+            playbackController.play()
+        }
+    }
 </code></pre>
 
 <ol>
 <li>Create the video heartbeat configuration policy block which will be called at the start of each playback session. The policy allows for customization of configuration data based on the current session.</li>
-<li>Use the configuration policy block to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <code>-[initWithHeartbeatConfigurationPolicy:]</code>. The <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> object is used to create the <a href="Classes/BCOVAMCSessionConsumer.html">BCOVAMCSessionConsumer</a>.</li>
-<li>After the playback controller is created, call the add session consumer method, <code>-[addSessionConsumer:]</code>, to add the AMC session consumer.</li>
+<li>Use the configuration policy block to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <a href="Classes/BCOVAMCAnalyticsPolicy.html"><code>BCOVAMCAnalyticsPolicy</code></a>(heartbeatConfigurationPolicy:). The <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> object is used to create the <a href="Classes/BCOVAMCSessionConsumer.html">BCOVAMCSessionConsumer</a>.</li>
+<li>After the playback controller is created, call the add session consumer method, <code>playbackController.add()</code>, to add the AMC session consumer.</li>
 </ol>
 
 
@@ -219,55 +218,54 @@ end
 
 <p>This example uses media tracking.</p>
 
-<pre><code>[1] BCOVAMCMediaSettingPolicy mediaSettingPolicy = ^ADBMediaSettings *(id&lt;BCOVPlaybackSession&gt; session) {
+<pre><code>[1] let mediaSettingPolicy: BCOVAMCMediaSettingPolicy = { (session: BCOVPlaybackSession?) in
+[2]     let settings = ADBMobile.mediaCreateSettings(withName: "&lt;cutomize_setting_name&gt;",
+                                                     length: 0,
+                                                     playerName: "&lt;cutomize_player_name&gt;",
+                                                     playerID: "&lt;cutomize_player_ID&gt;")
+[3]     settings.milestones = "25,50,75"; // a customization.
+        return settings
+    }
+[4] let mediaPolicy = BCOVAMCAnalyticsPolicy(mediaSettingsPolicy: mediaSettingPolicy)
 
-      ADBMediaSettings *settings = [ADBMobile mediaCreateSettingsWithName:&lt;cutomize_setting_name&gt;
-[2]                                                                length:0
-                                                               playerName:&lt;cutomize_player_name&gt;
-                                                                 playerID:&lt;cutomize_player_ID&gt;];
-[3]   settings.milestones = @"25,50,75"; // a customization.
-      return settings;
+    let sessionConsumer = BCOVAMCSessionConsumer.mediaAnalyticsConsumer(with: mediaPolicy,
+                                                                        delegate: self)
 
-    };
+    let sdkManager = BCOVPlayerSDKManager.sharedManager()
+[5] let playbackController = sdkManager.createPlaybackController()
+    playbackController.delegate = self
 
-[4] BBCOVAMCAnalyticsPolicy *mediaPolicy = [[BCOVAMCAnalyticsPolicy alloc] initWithMediaSettingsPolicy:mediaSettingPolicy];
+    videoView.addSubview(playerView)
 
-    BCOVAMCSessionConsumer *sessionConsumer = [BCOVAMCSessionConsumer mediaAnalyticsConsumerWithPolicy:mediaPolicy
-                                                                                              delegate:self];
+    // Add the Brightcove AMC session consumer to the playback controller.
+    playbackController.add(sessionConsumer)
 
-    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-    id&lt;BCOVPlaybackController&gt; controller = [manager createPlaybackController];
-    controller.delegate = self;
-    [self.view addSubview:controller.view];
-
-[5] [controller addSessionConsumer:sessionConsumer];       
-
-    NSString *policyKey = &lt;your-policy-key&gt;;
-    NSString *accountId = &lt;your-account-id&gt;;
-    NSString *videoID = &lt;your-video-id&gt;;
-    BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccountId:accountId
-                                                                        policyKey:policyKey];
-    NSDictionary *configuration = @{
-        kBCOVPlaybackServiceConfigurationKeyAssetID:videoID
-    };
-    [service findVideoWithConfiguration:configuration
-                        queryParameters:nil
-                             completion:^(BCOVVideo    *video,
-                                          NSDictionary *jsonResponse,
-                                          NSError      *error) {
-
-          [controller setVideos:@[ video ]];
-          [controller play];
-
-    }];
+    // Find and play a video.
+    let policyKey = "&lt;your-policy-key&gt;"
+    let accountID = "&lt;your-account-id&gt;"
+    let videoID = "&lt;your-video-id&gt;"
+    let playbackService = BCOVPlaybackService(withAccountId: accountID,
+                                              policyKey: policyKey)
+    let configuration = [
+        BCOVPlaybackService.ConfigurationKeyAssetID: videoID
+    ]
+    playbackService.findVideo(withConfiguration: configuration,
+                              queryParameters: nil) { (video: BCOVVideo?,
+                                                       jsonResponse: Any?,
+                                                       error: Error?) in
+        if let video {
+            playbackController.setVideos([video])
+            playbackController.play()
+        }
+    }
 </code></pre>
 
 <ol>
 <li>Create the media settings policy block which will be called at the start of each playback session. The policy allows for customization of media settings based on the current session.</li>
-<li>When creating the ADBMediaSettings instance with a class method of ADBMobile <code>+[mediaCreateSettingsWithName:length:playerName:playerID:]</code>, you can set <strong>video length</strong> to <strong>0</strong>. The Omniture plugin will update it later.</li>
+<li>When creating the ADBMediaSettings instance with a class method of ADBMobile <code>mediaCreateSettings(withName:length:playerName:playerID:)</code>, you can set <strong>video length</strong> to <strong>0</strong>. The Omniture plugin will update it later.</li>
 <li>Add optional settings such as milestones.</li>
-<li>Use the media settings policy block to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <code>-[initWithMediaSettingsPolicy:]</code>. The policy object is used to create an AMC session consumer for Adobe media tracking as <code>+[mediaAnalyticsConsumerWithPolicy:delegate:]</code>.</li>
-<li>After the playback controller is created, call the add session consumer method, <code>-[addSessionConsumer:]</code>, to add the AMC session consumer.</li>
+<li>Use the media settings policy block to create and initialize a <a href="Classes/BCOVAMCAnalyticsPolicy.html">BCOVAMCAnalyticsPolicy</a> instance with <a href="Classes/BCOVAMCAnalyticsPolicy.html"><code>BCOVAMCAnalyticsPolicy</code></a>(mediaSettingsPolicy:). The policy object is used to create an AMC session consumer for Adobe media tracking as <a href="Classes/BCOVAMCSessionConsumer.html"><code>BCOVAMCSessionConsumer</code></a>.mediaAnalyticsConsumer(with:delegate:).</li>
+<li>After the playback controller is created, call the add session consumer method, <code>playbackController.add()</code>, to add the AMC session consumer.</li>
 </ol>
 
 
@@ -326,7 +324,7 @@ https://github.com/Adobe-Marketing-Cloud/mobile-services/archive/refs/tags/v4.21
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+							<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
