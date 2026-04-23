@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64/BrightcoveAMC.framework/BrightcoveAMC</key>
 		<data>
-		NnItFZQIusn0E/40bi3nevU0aMw=
+		DHaUU4gfjdTFnX4qGjfWzrpcj/E=
 		</data>
 		<key>ios-arm64/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>ios-arm64/BrightcoveAMC.framework/Info.plist</key>
 		<data>
-		GE4hmAH92U9anWpKDNg5llvKrHc=
+		2AnJ5ZCoJUJomrOoBZbGkBN1utI=
 		</data>
 		<key>ios-arm64/BrightcoveAMC.framework/Modules/module.modulemap</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/BrightcoveAMC</key>
 		<data>
-		ExIqQnGTsVFOcjL7SMLyPmuwdUg=
+		/BmPt24Xv05XYzq60nZTLbHXL5E=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Info.plist</key>
 		<data>
-		g5JaZkYzul9dT7batNDY5dJckyU=
+		NDNFWRXnkFwbnX1h/FEZZR3X15c=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Modules/module.modulemap</key>
 		<data>
@@ -59,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NnItFZQIusn0E/40bi3nevU0aMw=
+			DHaUU4gfjdTFnX4qGjfWzrpcj/E=
 			</data>
 			<key>hash2</key>
 			<data>
-			yRfvYBzkajbVueZpBgdp/hXcNjTF00dFtdZG/HquZXg=
+			R2DWpdHh/D0U0n+6NbN1iuHdsBL4UAhRe9EkLz2bfFw=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
@@ -103,11 +103,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			GE4hmAH92U9anWpKDNg5llvKrHc=
+			2AnJ5ZCoJUJomrOoBZbGkBN1utI=
 			</data>
 			<key>hash2</key>
 			<data>
-			47Hi18trwJ77zfE4yzY0D9Is2ePQRQEgAg2z08sJDGM=
+			A/viePhAiYkrzLZrUGId/jde8E2zoL9w4adrUmq0I8U=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveAMC.framework/Modules/module.modulemap</key>
@@ -125,11 +125,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ExIqQnGTsVFOcjL7SMLyPmuwdUg=
+			/BmPt24Xv05XYzq60nZTLbHXL5E=
 			</data>
 			<key>hash2</key>
 			<data>
-			sKe1GX6KCAow9uWjsRdCG/8NPZlxEpy5jmzEtR1f/IE=
+			Wexf0msgEnL4DBdAKhL4TUC6pbpSp8bdpymjpKU0aEM=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
@@ -169,11 +169,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			g5JaZkYzul9dT7batNDY5dJckyU=
+			NDNFWRXnkFwbnX1h/FEZZR3X15c=
 			</data>
 			<key>hash2</key>
 			<data>
-			qTCW2hjnICzZSQ8l9cf6AeXaiMcMqLg1k/Hl4wrm+uU=
+			ou3weOBRTOag1GL/sK6N8xOn82GAFcwfkMepvuIOT6M=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Modules/module.modulemap</key>
