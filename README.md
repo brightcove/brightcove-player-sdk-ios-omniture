@@ -1,4 +1,4 @@
-# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 7.2.12.34
+# Omniture (Adobe Marketing Cloud - Adobe Analytics) Plugin for Brightcove Player SDK for iOS, version 7.2.13.35
 
 ## Installation
 
@@ -7,8 +7,6 @@ The Omniture plugin is a dynamic library framework which supports Adobe Marketin
 ### CocoaPods
 
 You can use [CocoaPods][cocoapods] to add the Omniture plugin to your project.  You can find the latest `Brightcove-Player-Omniture` podspec [here][podspecs]. To use this spec, add the following to the top of your Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
-
-#### Dynamic XCFramework example:
 
 ```bash
 source 'https://github.com/CocoaPods/Specs'
@@ -22,41 +20,20 @@ target 'MyOmniturePlayer' do
 end
 ```
 
-#### Framework example:
-
-Frameworks can be installed by appending the `/Framework` subspec to the pod name.
-
-```bash
-source 'https://github.com/CocoaPods/Specs'
-source 'https://github.com/brightcove/BrightcoveSpecs.git'
-
-platform :ios, '12.0'
-use_frameworks!
-
-target 'MyOmniturePlayer' do
-  pod 'Brightcove-Player-Omniture/Framework'
-end
-```
-
 ### Manual
 
 To add the Omniture Plugin for Brightcove Player SDK to your project manually:
 
 1. Install the latest version of the [Brightcove Player SDK][bcovsdkmanualsetup].
 2. Download the latest zip'ed release of the plugin from the [release page][release].
-1. Add the `BrightcoveAMC.framework` or `BrightcoveAMC.xcframework` project.  You can do this by right-clicking on the Frameworks folder and choose "Add Files To" option and select the `BrightcoveAMC.framework` or `BrightcoveAMC.xcframework` from the path where it is stored.
+1. Add `BrightcoveAMC.xcframework` to your project.
 1. On the "Build Settings" tab of your application target, ensure that the "Framework Search Paths" include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.
-1. On the "Build Phases" tab of your application target, add the following to the "Link
-    Binary With Libraries" phase:
-    * `BrightcoveAMC.framework` / `BrightcoveAMC.xcframework`
+1. On the "Build Phases" tab of your application target, add `BrightcoveAMC.xcframework` to the "Link Binary With Libraries" phase.
 1. On the "Build Settings" tab of your application target:
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
 1. Download Adobe Marketing Cloud following Adobe's [instructions][adobemarketingcloud] and add `AdobeMobile.xcframework` to your project.
 1. Download Adobe Video Heartbeat following Adobe's [instructions][adobevideoheartbeat] and add `MediaSDK.xcframework` to your project.
 1. Add the Marketing Cloud and Video Heartbeat header folders to the Header Search Path settings of your project.
-1. (**Universal Framework** only) On the "Build Phases" tab, add a "Run Script" phase with the command `bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveAMC.framework/strip-frameworks.sh`. Check "Run script only when installing". This will remove unneeded architectures from the build, which is important for App Store submission.
-1. (**Apple Silicon** only) On the "Build Settings" tab of your application target:
-    * Ensure that `arm64` has been added to your "Excluded Architectures" build setting for `Any iOS Simulator SDK`.
 
 [cocoapods]: http://cocoapods.org
 [podspecs]: https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-Omniture
