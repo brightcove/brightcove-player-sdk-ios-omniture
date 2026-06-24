@@ -12,12 +12,17 @@ let BrightcovePlayerSDK = Package(
     products: [
         .library(
             name: "BrightcoveAMC",
-            targets: ["BrightcoveAMC"])
+            targets: ["BrightcoveAMC", "BrightcoveAMCDeprecationNotice"])
     ],
     targets: [
         .binaryTarget(
             name: "BrightcoveAMC",
             path: "xcframework/BrightcoveAMC.xcframework"
+        ),
+        .target(
+            name: "BrightcoveAMCDeprecationNotice",
+            path: "DeprecationNotice",
+            exclude: ["Notice.m"]
         )
     ]
 )
