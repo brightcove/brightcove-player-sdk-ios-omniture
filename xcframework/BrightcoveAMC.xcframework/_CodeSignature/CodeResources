@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64/BrightcoveAMC.framework/BrightcoveAMC</key>
 		<data>
-		lefwCWvXzcWBy/OK7HLuMyn7CxY=
+		B2DNIf5Bv1i14IsMisK/h/5EvX4=
 		</data>
 		<key>ios-arm64/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>ios-arm64/BrightcoveAMC.framework/Info.plist</key>
 		<data>
-		ldkDJAtgnw1IhH6N2VDG9ev68Z8=
+		r/4Rcsn9x8Rw0QMNFUNdF/GE3qk=
 		</data>
 		<key>ios-arm64/BrightcoveAMC.framework/Modules/module.modulemap</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/BrightcoveAMC</key>
 		<data>
-		BxNFaBBzsNZFq7sZwc4pOQl7KS8=
+		1+T7mNMjJACRfWtXS5sDpjD7h04=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Info.plist</key>
 		<data>
-		vf7UtuFbC4R8HNqazptuDXEFmgA=
+		CJwGLelBp9dZnkRJU/KVctJZVLg=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Modules/module.modulemap</key>
 		<data>
@@ -59,7 +59,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AlqGGmQIxWHS6M3W+JwRZlBaW3Aqc09fARLqva1+GA4=
+			OFtTWvrxd4r2+flmE459ngeb2a7lRoTTUtskgeeXw+M=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
@@ -87,7 +87,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5tKwaQjHLbUlW4yyG6ezo5tCZlDnqiAWZxy1kEbvAWI=
+			n9f0IAF5A1roRRpeZm+ZKy6ZqnORnRo6TL0j6f9V7H0=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveAMC.framework/Modules/module.modulemap</key>
@@ -101,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pcdRZc21GnmrIVJ0E96fHVORNwAL4CuKu9T+bKX2Mck=
+			JXUaLaAVRWDtqQ6GSSMmLWXpLKNQZ7fYyDgNLz0NGdM=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Headers/BCOVAMCAnalyticsPolicy.h</key>
@@ -129,7 +129,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qaU8vvdw30BZLrus6dfc7UTeDoYRmas76O2Yj196G9I=
+			9oJA00LBDoCLN57OtrQDWpURW0vJ7i6mD4rkixlrK40=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveAMC.framework/Modules/module.modulemap</key>
